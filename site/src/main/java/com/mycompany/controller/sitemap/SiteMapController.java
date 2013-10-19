@@ -33,7 +33,7 @@ public class SiteMapController extends BroadleafSiteMapController {
      * @throws SiteMapException
      * @throws IOException
      */
-    @RequestMapping("/generate")
+    @RequestMapping("/generate_site_map")
     @ResponseBody
     public String generateSiteMap(HttpServletRequest request, HttpServletResponse response, Model model) throws SiteMapException, IOException {
         return super.generateSiteMap(request, response, model);
@@ -48,7 +48,7 @@ public class SiteMapController extends BroadleafSiteMapController {
      * @param fileName
      * @return
      */
-    @RequestMapping("/retrieve/{file_name:.+\\.xml}")
+    @RequestMapping("/{file_name:.+\\.xml}")
     @ResponseBody
     public FileSystemResource retrieveSiteMapIndex(HttpServletRequest request, HttpServletResponse response, Model model, @PathVariable(value = "file_name") String fileName) {
         return super.retrieveSiteMapIndex(request, response, model, fileName);
@@ -63,7 +63,7 @@ public class SiteMapController extends BroadleafSiteMapController {
      * @param fileName
      * @return
      */
-    @RequestMapping("/retrieve/{file_name:.+\\.gz}")
+    @RequestMapping("/{file_name:.+\\.gz}")
     public void retrieveSiteMap(HttpServletRequest request, HttpServletResponse response, Model model, @PathVariable(value = "file_name") String fileName) {
         super.retrieveSiteMap(request, response, model, fileName);
     }
