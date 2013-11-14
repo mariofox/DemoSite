@@ -100,7 +100,7 @@
     
     <servlet-mapping>
         <servlet-name>suramericana</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
     
     <!-- The RESTApiServlet can be disabled, but doesn't have to be. It will throw an exception if 
