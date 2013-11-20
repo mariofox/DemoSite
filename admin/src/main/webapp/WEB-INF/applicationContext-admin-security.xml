@@ -52,11 +52,11 @@
         <!-- Since we run this alongside the site, we need to set up the special port mapping -->
         <!-- This isn't necessary for site becauase it utilizes a default mapping -->
         <!-- Note that since we are providing a special mapping, we must repeat the default ones -->
-        <sec:port-mappings>
+        <!-- sec:port-mappings>
             <sec:port-mapping http="80" https="443"/>
             <sec:port-mapping http="8080" https="8443"/>
             <sec:port-mapping http="8082" https="8444"/>
-        </sec:port-mappings>
+        </sec:port-mappings-->
         
         <!-- Specify our custom filters -->
         <sec:custom-filter ref="blPreSecurityFilterChain" before="CHANNEL_FILTER"/>

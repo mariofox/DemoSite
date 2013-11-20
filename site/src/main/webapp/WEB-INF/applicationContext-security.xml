@@ -37,11 +37,11 @@
         <sec:intercept-url pattern="/account/wishlist/**" access="ROLE_USER" requires-channel="any" />
         
         <!-- Specify these URLs as requiring HTTPS to encrypt user data  -->
-        <sec:intercept-url pattern="/register*" requires-channel="https" />
-        <sec:intercept-url pattern="/login*/**" requires-channel="https" />
-        <sec:intercept-url pattern="/account/**" access="ROLE_USER" requires-channel="https" />
-        <sec:intercept-url pattern="/checkout/**" requires-channel="https" />
-        <sec:intercept-url pattern="/confirmation/**" requires-channel="https" />
+        <sec:intercept-url pattern="/register*" requires-channel="http" />
+        <sec:intercept-url pattern="/login*/**" requires-channel="http" />
+        <sec:intercept-url pattern="/account/**" access="ROLE_USER" requires-channel="http" />
+        <sec:intercept-url pattern="/checkout/**" requires-channel="http" />
+        <sec:intercept-url pattern="/confirmation/**" requires-channel="http" />
         
         <!-- Since the cart page is viewing as a modal, we want to allow it on any page -->
         <sec:intercept-url pattern="/cart/**" requires-channel="any" />
@@ -82,7 +82,7 @@
     <!--  User details service that authenticates using customer data in the database. -->
     <sec:jdbc-user-service data-source-ref="webDS"
         id="blUserDetailsService"
-        users-by-username-query="SELECT USER_NAME,PASSWORD,TRUE FROM BLC_CUSTOMER WHERE USER_NAME=?"
+        users-by-username-query="SELECT USER_NAME,PASSWORD,1 FROM BLC_CUSTOMER WHERE USER_NAME=?"
         authorities-by-username-query="SELECT c.USER_NAME,r.ROLE_NAME from BLC_CUSTOMER c 
                                           JOIN BLC_CUSTOMER_ROLE cr ON c.CUSTOMER_ID = cr.CUSTOMER_ID 
                                           JOIN BLC_ROLE r ON cr.ROLE_ID = r.ROLE_ID 

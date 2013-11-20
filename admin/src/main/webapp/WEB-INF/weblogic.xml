@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wls:weblogic-web-app xmlns:wls="http://xmlns.oracle.com/weblogic/weblogic-web-app" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd http://xmlns.oracle.com/weblogic/weblogic-web-app http://xmlns.oracle.com/weblogic/weblogic-web-app/1.4/weblogic-web-app.xsd">
+    <wls:weblogic-version>12.1.2</wls:weblogic-version>
+    <wls:context-root>suramarketplace-admin</wls:context-root>
+     <wls:container-descriptor> 
+		  <wls:prefer-application-packages>
+			<wls:package-name>org.apache.*</wls:package-name>
+			<wls:package-name>org.jbpm.*</wls:package-name>			
+			<wls:package-name>javax.faces.*</wls:package-name>
+			<wls:package-name>org.hibernate.*</wls:package-name>
+			<wls:package-name>net.sf.*</wls:package-name>
+			<wls:package-name>org.displaytag.*</wls:package-name>
+			<wls:package-name>org.ajax4jsf.*</wls:package-name>
+			<wls:package-name>com.sun.*</wls:package-name>
+			<wls:package-name>org.jboss.*</wls:package-name>
+			<wls:package-name>org.codehaus.*</wls:package-name>
+			<wls:package-name>org.richfaces.*</wls:package-name>			
+			<wls:package-name>antlr.*</wls:package-name>
+			<wls:package-name>org.slf4j.*</wls:package-name>
+			<wls:package-name>org.bouncycastle.*</wls:package-name>
+			<wls:package-name>org.objectweb.*</wls:package-name>
+			<wls:package-name>org.joda.*</wls:package-name>
+		</wls:prefer-application-packages>
+		<wls:show-archived-real-path-enabled>true</wls:show-archived-real-path-enabled>
+    </wls:container-descriptor> 
+</wls:weblogic-web-app>
