@@ -73,9 +73,10 @@
     
     <!--  The BLC Authentication manager.   -->
     <sec:authentication-manager alias="blAuthenticationManager">
-        <sec:authentication-provider user-service-ref="blUserDetailsService">
+        <!-- <sec:authentication-provider user-service-ref="blUserDetailsService">
             <sec:password-encoder ref="blPasswordEncoder" />
-        </sec:authentication-provider>
+        </sec:authentication-provider> -->
+        <sec:authentication-provider ref="seusCustomAuthenticationProvider" />
     </sec:authentication-manager>
     
     <!--  User details service that authenticates using customer data in the database. -->
@@ -88,6 +89,10 @@
                                           WHERE USER_NAME=?" />
     
     <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" />
+    
+    <bean id="blUserDetailsService" class="com.suramericana.service.security.seus.SeusUserDetailsService" />
+    
+    <bean id="seusCustomAuthenticationProvider" class="com.suramericana.service.security.seus.SeusCustomAuthenticationProvider" />
                                           
     <!-- Sets the login failure URL -->
     <bean id="blAuthenticationFailureHandler" class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
