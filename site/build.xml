@@ -35,7 +35,7 @@
             </artifact:mvn>
         </target>
 
-    <target name="jetty-demo" depends="stop-all,start-db">
+    <target name="jetty-demo" depends="start-db">
         <delete dir="war/WEB-INF/lib"/>
         <artifact:mvn mavenHome="${maven.home}" fork="true">
             <jvmarg value="-XX:MaxPermSize=256M" />
