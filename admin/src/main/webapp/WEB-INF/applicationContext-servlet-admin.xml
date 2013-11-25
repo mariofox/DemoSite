@@ -35,6 +35,10 @@
         </property>
     </bean>
     
+    <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer">
+    	<property name="defaultEnvironment" value="integrationdev"/>
+	</bean>
+    
     <!-- Set up the view resolver to be used by Spring -->
     <bean class="org.broadleafcommerce.common.web.BroadleafThymeleafViewResolver">
         <property name="templateEngine" ref="blAdminWebTemplateEngine" />

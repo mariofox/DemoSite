@@ -20,7 +20,9 @@
         
     <context:component-scan base-package="com.suramericana.admin.service" />
         
-    <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer" />
+    <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer">
+    	<property name="defaultEnvironment" value="integrationdev"/>
+	</bean>
 
     <bean id="blMergedDataSources" class="org.springframework.beans.factory.config.MapFactoryBean">
         <property name="sourceMap">
