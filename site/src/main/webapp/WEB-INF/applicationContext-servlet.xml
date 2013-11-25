@@ -28,6 +28,10 @@
       <property name="order" value="2"/>
     </bean>
     
+    <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer">
+    	<property name="defaultEnvironment" value="integrationdev"/>
+	</bean>
+    
     <!--  Checks for a URL match to a CMS managed page URL.   -->
     <bean class="org.broadleafcommerce.cms.web.PageHandlerMapping">
       <property name="order" value="3"/>
@@ -61,7 +65,7 @@
 
     <!-- Default locale set -->
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-        <property name="defaultLocale" value="en"/>
+        <property name="defaultLocale" value="es_ES"/>
     </bean>
     
     <!-- Tell Spring to not try to map things in these directories to controllers -->
