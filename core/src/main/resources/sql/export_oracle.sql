@@ -1,3 +1,12 @@
+--Truncate y disable constraints por si es necesario
+--select 'truncate table ops$publ.' || o.OBJECT_NAME ||';' from dba_objects o where o.OWNER like 'OPS$PUBL' AND OBJECT_NAME LIKE 'BLC%' and object_type = 'TABLE';
+--select 'ALTER TABLE OPS$PUBL.' || C.TABLE_NAME || ' DISABLE CONSTRAINT ' || C.CONSTRAINT_NAME || ';' from dba_constraints c where owner = 'OPS$PUBL' AND (TABLE_NAME LIKE 'BLC%' OR TABLE_NAME LIKE  'SEQUENCE_GENERATOR');
+--Antes de los insert, para que no tome el ampersand
+--set define off
+
+--Luego de hacer los inserts, ejecutar enable constraint
+--select 'ALTER TABLE OPS$PUBL.' || C.TABLE_NAME || ' ENABLE CONSTRAINT ' || C.CONSTRAINT_NAME || ';' from dba_constraints c where owner = 'OPS$PUBL' AND (TABLE_NAME LIKE 'BLC%' OR TABLE_NAME LIKE  'SEQUENCE_GENERATOR');
+
 INSERT INTO ops$publ.BLC_ADMIN_MODULE(ADMIN_MODULE_ID, DISPLAY_ORDER, ICON, MODULE_KEY, NAME) VALUES (-6, 6, 'icon-wrench', 'BLCUtilities', 'Utilities');
 INSERT INTO ops$publ.BLC_ADMIN_MODULE(ADMIN_MODULE_ID, DISPLAY_ORDER, ICON, MODULE_KEY, NAME) VALUES (-5, 5, 'icon-gear', 'BLCModuleConfiguration', 'Module Configuration');
 INSERT INTO ops$publ.BLC_ADMIN_MODULE(ADMIN_MODULE_ID, DISPLAY_ORDER, ICON, MODULE_KEY, NAME) VALUES (-4, 4, 'icon-user', 'BLCOpenAdmin', 'User Administration');
