@@ -19,10 +19,14 @@ package com.suramericana.controller.checkout;
 import org.apache.commons.collections.CollectionUtils;
 import org.broadleafcommerce.common.exception.ServiceException;
 import org.broadleafcommerce.core.checkout.service.exception.CheckoutException;
+import org.broadleafcommerce.core.checkout.service.workflow.CheckoutResponse;
 import org.broadleafcommerce.core.order.domain.FulfillmentGroup;
 import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.payment.domain.PaymentInfo;
+import org.broadleafcommerce.core.payment.domain.Referenced;
 import org.broadleafcommerce.core.payment.service.type.PaymentInfoType;
+import org.broadleafcommerce.core.payment.service.PaymentInfoService;
+import org.broadleafcommerce.core.payment.service.PaymentInfoServiceImpl;
 import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.checkout.model.BillingInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderInfoForm;
@@ -42,14 +46,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.suramericana.payment.service.cajasap.SuraCajaSapPaymentInfoType;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/checkout")
 public class CheckoutController extends BroadleafCheckoutController {
+	
+	@Resource(name = "blPaymentInfoService")
+    protected PaymentInfoService paymentInfoService;
 
     /*
     * The Checkout page for Heat Clinic will have the shipping information pre-populated 
@@ -113,6 +125,7 @@ public class CheckoutController extends BroadleafCheckoutController {
         return super.saveMultishipAddAddress(request, response, model, addressForm, result);
     }
 
+    /* Se comenta para implementar pago de caja sura sap
     @RequestMapping(value = "/complete", method = RequestMethod.POST)
     public String completeSecureCreditCardCheckout(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
@@ -121,7 +134,50 @@ public class CheckoutController extends BroadleafCheckoutController {
             BindingResult result) throws CheckoutException, PricingException, ServiceException {
         prepopulateCheckoutForms(CartState.getCart(), null, shippingForm, billingForm);
         return super.completeSecureCreditCardCheckout(request, response, model, billingForm, result);
+    }*/
+    
+    @RequestMapping(value = "/complete", method = RequestMethod.POST)
+    public String completeCheckout(HttpServletRequest request, HttpServletResponse response, Model model,
+            @ModelAttribute("orderInfoForm") OrderInfoForm orderInfoForm,
+            @ModelAttribute("shippingInfoForm") ShippingInfoForm shippingForm,
+            @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
+            BindingResult result) throws CheckoutException, PricingException, ServiceException {
+    	
+    	Order cart=CartState.getCart();
+    	System.out.println(cart.getPaymentInfos());
+    	if (cart != null)
+    	{
+    		
+	    	Map<PaymentInfo, Referenced> payments = new HashMap<PaymentInfo, Referenced>();
+	    	
+	    	if (billingForm.isUseShippingAddress()){
+                copyShippingAddressToBillingAddress(cart, billingForm);
+            }
+	    	
+	    	
+	    	
+	    	String uniqueReferenceNumber=String.valueOf(cart.getId());
+	    	
+	    	PaymentInfo paymentInfoCajaSap = (PaymentInfo) paymentInfoService.create();
+	    	paymentInfoCajaSap.setAddress(billingForm.getAddress());
+	    	cart.getPaymentInfos().add(paymentInfoCajaSap);
+	    	
+	    	paymentInfoCajaSap.setType(SuraCajaSapPaymentInfoType.CAJA_SAP);
+	    	paymentInfoCajaSap.setOrder(cart);
+	    	paymentInfoCajaSap.setAmount(cart.getTotal());
+	    	paymentInfoCajaSap.setReferenceNumber(uniqueReferenceNumber);
+	    	
+	    	payments.put(paymentInfoCajaSap, paymentInfoCajaSap.createEmptyReferenced());
+	    	
+	    	cart.getPaymentInfos().add(paymentInfoCajaSap);
+	    	CheckoutResponse checkoutResponse = checkoutService.performCheckout(cart,payments);
+	    	return getConfirmationView(cart.getOrderNumber());
+	    	//return getCartPageRedirect();
+    	}
+
+    	return getCartPageRedirect();
     }
+    
 
     protected void prepopulateOrderInfoForm(Order cart, OrderInfoForm orderInfoForm) {
         if (orderInfoForm != null) {

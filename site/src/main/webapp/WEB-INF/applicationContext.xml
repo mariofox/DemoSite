@@ -21,6 +21,37 @@
     <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer">
     	<property name="defaultEnvironment" value="integrationdev"/>
 	</bean>
+	
+	
+	<!-- Configuración para soportar pago por Caja SAP Sura  -->
+	<bean id="bSuraCajaSapPaymentModule" class="com.suramericana.payment.service.cajasap.SuraCajaSapPaymentModule"/>
+	
+	<bean id="bSuraCajaSapPaymentService" class="org.broadleafcommerce.core.payment.service.PaymentServiceImpl">
+	    <property name="paymentModule" ref="bSuraCajaSapPaymentModule"/>
+	</bean>
+	
+	<bean id="SuraCajaSapPaymentWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
+	    <property name="processContextFactory">
+	        <bean class="org.broadleafcommerce.core.payment.service.workflow.PaymentProcessContextFactory">
+	            <property name="paymentActionType" value="AUTHORIZEANDDEBIT"/>
+	        </bean>
+	    </property>
+	    <property name="activities">
+	        <list>
+	            <bean class="org.broadleafcommerce.core.payment.service.workflow.PaymentActivity">
+	                <property name="paymentService" ref="blCreditCardService"/>
+	                <property name="userName" value="web"/>
+	            </bean>
+	            <bean class="org.broadleafcommerce.core.payment.service.workflow.PaymentActivity">
+	                <property name="paymentService" ref="bSuraCajaSapPaymentService"/>
+	                <property name="userName" value="web"/>
+	            </bean>
+	        </list>
+	    </property>
+	    <property name="defaultErrorHandler" ref="blDefaultErrorHandler"/>
+	</bean>
+	<!-- Fin configuración para soportar pago por Caja SAP Sura  -->
+	
 
     <bean id="blMergedDataSources" class="org.springframework.beans.factory.config.MapFactoryBean">
         <property name="sourceMap">
