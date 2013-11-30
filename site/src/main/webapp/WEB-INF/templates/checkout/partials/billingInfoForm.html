@@ -136,11 +136,13 @@
             </select>
         </div>
 
-        <div class="form25 margin20">
+        <!-- <div class="form25 margin20">
             <label for="postal_code"><span th:text="#{cart.postalCode}">Postal Code</span></label>
             <span class="error" th:if="${#fields.hasErrors('address.postalCode')}" th:errors="*{address.postalCode}"></span>
             <input type="text" th:field="*{address.postalCode}" class="field25 clearable" th:classappend="${#fields.hasErrors('address.postalCode')}? 'fieldError'" th:disabled="${!validShipping}" />
-        </div>
+        </div> -->
+        
+        <input type="hidden" name="address.postalCode" value="0000" />
 
         <div style="float:right;">
             <input type="submit" class="medium" th:value="#{cart.completOrder}" th:disabled="${!validShipping}" th:classappend="${validShipping}? 'red' : 'gray'"/>

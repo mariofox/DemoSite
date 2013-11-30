@@ -22,7 +22,7 @@
     	<property name="defaultEnvironment" value="integrationdev"/>
 	</bean>
 	
-    <!-- Configuración para presentar el signo $ en la moneda colombiana -->
+	<!-- Configuración para presentar el signo $ en la moneda colombiana -->
     <bean id="blPriceTextDisplayProcessor" class="com.suramericana.web.processor.SuraPriceTextDisplayProcessor" />
 	
 	<!-- Configuración para soportar pago por Caja SAP Sura  -->

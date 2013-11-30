@@ -114,13 +114,13 @@
                     [[*{address.phonePrimary.phoneNumber}]]<br/>
                     [[*{address.addressLine1}]]<br/>
                     [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                    [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                    [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]<br/>
                 </address>
                 <address th:if="*{address.phonePrimary == null}">
                     [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
                     [[*{address.addressLine1}]]<br/>
                     [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                    [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                    [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]<br/>
                 </address>
             </div>
             <div class="right_content">
@@ -142,20 +142,18 @@
                     [[*{address.phonePrimary.phoneNumber}]]<br/>
                     [[*{address.addressLine1}]]<br/>
                     [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                    [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                    [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]<br/>
                 </address>
                 <address th:if="*{address.phonePrimary == null}">
                     [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
                     [[*{address.addressLine1}]]<br/>
                     [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                    [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
+                    [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]<br/>
                 </address>
             </div>
             <div class="right_content">
                 <h3><span th:text="#{confirmation.payment.info}">Payment Information</span></h3>
-                <b th:text="*{additionalFields['CARD_TYPE']}"/><br/>
-                ****<span th:text="*{additionalFields['LAST_FOUR']}"/><br/>
-                <span th:text="#{confirmation.exp}">exp.</span> <span th:text="*{additionalFields['EXP_MONTH']}"/>/<span th:text="*{additionalFields['EXP_YEAR']}"/>
+                <b th:text="*{type.friendlyType}"/><br/>
             </div>
             <div class="clearfix"></div>
         </div>

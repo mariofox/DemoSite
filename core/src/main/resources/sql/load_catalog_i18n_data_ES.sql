@@ -108,8 +108,8 @@ INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE
 -----------------------------------------------------------------------------------------------------------------------------------
 -- FULFILLMENT OPTIONS TRANSLATION
 -----------------------------------------------------------------------------------------------------------------------------------
-INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE, FIELD_NAME,  TRANSLATED_VALUE) VALUES (-191, 1, 'es', 'FulfillmentOption', 'name', 'Estándar');
-INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE, FIELD_NAME,  TRANSLATED_VALUE) VALUES (-192, 1, 'es', 'FulfillmentOption', 'longDescription', '5 - 7 D&iacute;as');
+INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE, FIELD_NAME,  TRANSLATED_VALUE) VALUES (-191, 1, 'es', 'FulfillmentOption', 'name', 'Correspondencia');
+INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE, FIELD_NAME,  TRANSLATED_VALUE) VALUES (-192, 1, 'es', 'FulfillmentOption', 'longDescription', 'Correspondencia');
 INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE, FIELD_NAME,  TRANSLATED_VALUE) VALUES (-193, 2, 'es', 'FulfillmentOption', 'name', 'Ejecutiva');
 INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE, FIELD_NAME,  TRANSLATED_VALUE) VALUES (-194, 2, 'es', 'FulfillmentOption', 'longDescription', '3 - 5 D&iacute;as');
 INSERT INTO BLC_TRANSLATION (TRANSLATION_ID, ENTITY_ID, LOCALE_CODE, ENTITY_TYPE, FIELD_NAME,  TRANSLATED_VALUE) VALUES (-195, 3, 'es', 'FulfillmentOption', 'name', 'Express');

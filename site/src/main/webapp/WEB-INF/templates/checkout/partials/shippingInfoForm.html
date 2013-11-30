@@ -30,21 +30,23 @@
 
             <div class="clearfix"></div>
 
-            <div class="form30">
+            <div class="form30" style="width: 280px">
                 <label for="city"><span th:text="#{cart.cityState}">City / State</span></label> <span class="error" th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"></span> <br
                     th:if="${#fields.hasErrors('address.city')} and ${#fields.hasErrors('address.state')}" /> <span class="error" th:if="${#fields.hasErrors('address.state')}"
                     th:errors="*{address.state}"></span> <input type="text" th:field="*{address.city}" class="field25 cloneable"
-                    th:classappend="${#fields.hasErrors('address.city')}? 'fieldError'" /> <select id="state" th:field="*{address.state}" size="1" style="width: 48px;"
+                    th:classappend="${#fields.hasErrors('address.city')}? 'fieldError'" /> <select id="state" th:field="*{address.state}" size="1" style="width: 100px;"
                     class="cloneable" th:classappend="${#fields.hasErrors('address.state')}? 'fieldError'">
                     <option value="">--</option>
                     <option th:each="state : ${states}" th:value="${state.abbreviation}" th:text="${state.abbreviation}"></option>
                 </select>
             </div>
 
-            <div class="form25 margin20">
+            <!-- <div class="form25 margin20">
                 <label for="postal_code"><span th:text="#{cart.postalCode}">Postal Code</span></label> <span class="error" th:if="${#fields.hasErrors('address.postalCode')}" th:errors="*{address.postalCode}"></span>
-                <input type="text" th:field="*{address.postalCode}" class="field25 cloneable" th:classappend="${#fields.hasErrors('address.postalCode')}? 'fieldError'" />
-            </div>
+                <input type="text" value="0000" th:field="*{address.postalCode}" class="field25 cloneable" th:classappend="${#fields.hasErrors('address.postalCode')}? 'fieldError'" />
+            </div> -->
+            
+            <input type="hidden" name="address.postalCode" value="0000" />
 
         </div>
 
@@ -74,9 +76,9 @@
                 <input id="select_shipping" type="submit" class="small dark" th:value="#{cart.selectShipping}" />
             </div>
 
-            <p>
+            <!-- <p>
                 <a id="multiship" th:href="@{/checkout/multiship}"><span th:text="#{cart.shipToMultipleAddresses}">Ship to Multiple Addresses</span></a>
-            </p>
+            </p> -->
         </div>
     </blc:form>
 
@@ -86,13 +88,13 @@
             <address th:if="*{address.phonePrimary !=null and address.phonePrimary.phoneNumber != null}">
                 [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br />
                 [[*{address.addressLine1}]]<br /> [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}" />
-                [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br />
+                [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]<br />
                 [[*{address.phonePrimary.phoneNumber}]]
             </address>
             <address th:if="*{address.phonePrimary == null or address.phonePrimary.phoneNumber == null}">
                 [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br />
                 [[*{address.addressLine1}]]<br /> [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}" />
-                [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br />
+                [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]<br />
             </address>
         </div>
         <div class="group shipping-info-read-only">
