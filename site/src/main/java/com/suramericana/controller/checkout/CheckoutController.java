@@ -154,7 +154,10 @@ public class CheckoutController extends BroadleafCheckoutController {
                 copyShippingAddressToBillingAddress(cart, billingForm);
             }
 	    	
+	    	//TODO:Sura Validar formulario con 	billingInfoFormValidator.validate(billingForm, result) 
+	    	//(ver metodo completeSecureCreditCardCheckout de superclase para ejemplo)
 	    	
+	    	//cart.setName("NombreOrden");
 	    	
 	    	String uniqueReferenceNumber=String.valueOf(cart.getId());
 	    	
@@ -172,7 +175,6 @@ public class CheckoutController extends BroadleafCheckoutController {
 	    	cart.getPaymentInfos().add(paymentInfoCajaSap);
 	    	CheckoutResponse checkoutResponse = checkoutService.performCheckout(cart,payments);
 	    	return getConfirmationView(cart.getOrderNumber());
-	    	//return getCartPageRedirect();
     	}
 
     	return getCartPageRedirect();

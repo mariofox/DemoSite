@@ -19,6 +19,17 @@
         http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
         
     <context:component-scan base-package="com.suramericana.admin.service" />
+    
+    <!-- Configuración para hacer status de orden editable -->
+    <mo:override id="blMetadataOverrides">
+       <mo:overrideItem ceilingEntity="org.broadleafcommerce.core.order.domain.Order">
+           <mo:field name="status">
+               <mo:property name="broadleafEnumeration" value="com.suramericana.order.service.type.SuraOrderStatus" />
+               <mo:property name="readOnly" value="false" />
+           </mo:field>
+       </mo:overrideItem>
+   </mo:override>
+   <!-- Configuración para hacer status de orden editable -->
         
     <bean id="blConfiguration" class="org.broadleafcommerce.common.config.RuntimeEnvironmentPropertiesConfigurer">
     	<property name="defaultEnvironment" value="integrationdev"/>
