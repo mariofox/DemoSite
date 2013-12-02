@@ -71,7 +71,7 @@
                             <blc:named_order orderVar="wishlist" orderName="wishlist" />
 
                             <div class="in_wishlist" th:classappend="${!wishlist.containsSku(product.defaultSku)}? ' hidden'">
-                                <a class="inWishlist small-button gray-button" th:href="@{/account/wishlist}">¡En la Lista de Deseos!</a>
+                                <a class="inWishlist small-button gray-button" th:href="@{/account/wishlist}">En la Lista de Deseos</a>
                             </div>
                             <div class="add_to_wishlist" th:classappend="${wishlist.containsSku(product.defaultSku)}? ' hidden'">
                                 <input type="hidden" name="productId" th:value="*{id}" />
