@@ -20,6 +20,7 @@
 			<wls:package-name>org.bouncycastle.*</wls:package-name>
 			<wls:package-name>org.objectweb.*</wls:package-name>
 			<wls:package-name>org.joda.*</wls:package-name>
+			<wls:package-name>org.springframework.*</wls:package-name>
 		</wls:prefer-application-packages>
 		<wls:show-archived-real-path-enabled>true</wls:show-archived-real-path-enabled>
     </wls:container-descriptor> 
