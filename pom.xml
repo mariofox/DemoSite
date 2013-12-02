@@ -7,13 +7,13 @@
     <artifactId>ecommerce-website</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
-    <name>ecommerce</name>
-    <url>http://www.blc-archetype.com</url>
+    <name>suramarketplace</name>
+    <url>http://www.sura.com</url>
     <properties>
         <blc.version>3.0.6-GA</blc.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <description>My Company's eCommerce Website</description>
+    <description>Suramericana Market Place</description>
     <repositories>
         <repository>
             <id>public snapshots</id>

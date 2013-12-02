@@ -229,7 +229,7 @@
                 <!--uncomment the following spring insturment jar argument if you require spring instrument-->
                 <jvmarg value="-javaagent:${spring.instrument.path}"/>
                 <jvmarg value="-XX:MaxPermSize=512M" />
-                <jvmarg value="-Xmx1024M" />
+                <jvmarg value="-Xmx512M" />
                 <arg value="-buildfile"/>
                 <arg file="build.xml"/>
                 <arg value="update-sql"/>

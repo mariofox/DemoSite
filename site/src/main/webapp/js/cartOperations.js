@@ -118,12 +118,12 @@ $(function(){
                         } else if (data.error == 'productOptionValidationError') {
                         	// find the product option that failed validation with jquery
                         	// put a message next to that text box with value = data.message
-                        	$productOptionsSpan.text('Product Validation Failed: '+ data.errorCode+' '+data.errorMessage);
+                        	$productOptionsSpan.text('Error validando el producto: '+ data.errorCode+' '+data.errorMessage);
                         	$productOptionsSpan.css('display', 'block');
                         	$productOptionsSpan.effect('highlight', {}, 1000);
                         	
                         } else {
-                            HC.showNotification("Error adding to cart");
+                            HC.showNotification("Error adicionando al carrito");
                         }
                     } else {
                         $errorSpan.css('display', 'none'); 
@@ -139,9 +139,9 @@ $(function(){
                         }
                         
                         if (wishlistAdd) {
-                            HC.showNotification(data.productName + "  has been added to your wishlist!");
+                            HC.showNotification("¡" + data.productName + " ha sido adicionado a su lista de deseos!");
                         } else {
-                            HC.showNotification(data.productName + "  has been added to the cart!", 2000);
+                            HC.showNotification("¡" + data.productName + " ha sido adicionado al carrito!", 2000);
                         }
                     }
                 }
@@ -211,7 +211,7 @@ $(function(){
                 data: $form.serialize() 
             }, function(data, extraData) {
                 if(!extraData.promoAdded) {
-                    $("#cart_promo_error").html("Promo could not be applied: " + extraData.exception).css("display", "");
+                    $("#cart_promo_error").html("La promoción no se pudo aplicar: " + extraData.exception).css("display", "");
                 } else {
                     $('.fancybox-inner').html(data);
                 }
