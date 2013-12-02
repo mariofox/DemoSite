@@ -73,18 +73,10 @@
     
     <!--  The BLC Authentication manager.   -->
     <sec:authentication-manager alias="blAuthenticationManager">
-<<<<<<< HEAD
         <!-- <sec:authentication-provider user-service-ref="blUserDetailsService">
             <sec:password-encoder ref="blPasswordEncoder" />
         </sec:authentication-provider> -->
         <sec:authentication-provider ref="seusCustomAuthenticationProvider" />
-=======
-        <sec:authentication-provider user-service-ref="blUserDetailsService">
-            <sec:password-encoder ref="blPasswordEncoder">
-                <sec:salt-source ref="blSaltSource" />
-            </sec:password-encoder>
-        </sec:authentication-provider>
->>>>>>> upstream/master
     </sec:authentication-manager>
     
     <!-- Configuration for salting user passwords. This configuration will use the 'username' property as the salt, which
