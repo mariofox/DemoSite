@@ -252,11 +252,6 @@ INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (632,'Y');
 INSERT INTO BLC_SKU (SKU_ID,DISCOUNTABLE_FLAG) VALUES (633,'Y');
 
 ------------------------------------------------------------------------------------------------------------------
--- Asociar el currency a todos los sku. Si no, la consulta en admin de productos falla
-------------------------------------------------------------------------------------------------------------------
-UPDATE BLC_SKU SET CURRENCY_CODE = 'COP';
-
-------------------------------------------------------------------------------------------------------------------
 -- Associate the appropriate option values for the skus
 ------------------------------------------------------------------------------------------------------------------
 INSERT INTO BLC_SKU_OPTION_VALUE_XREF (SKU_ID, PRODUCT_OPTION_VALUE_ID) VALUES (111, 1), (111, 11);

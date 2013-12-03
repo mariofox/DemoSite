@@ -67,7 +67,7 @@
         <div class="cart_title">
             <span th:text="#{cart.step2}">Step 2</span> &raquo; <span th:text="#{cart.shippingInformation}">Shipping Information</span>
             <a th:if="${validShipping and cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) == 1}" th:href="@{/checkout(edit-shipping='true')}">
-                <span th:text="#{cart.edit}">Edit</span>
+                <span th:text="#{cart.edit}" style="color: white; text-decoration: underline;">Edit</span>
             </a>
         </div>
         

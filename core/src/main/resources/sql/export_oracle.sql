@@ -571,12 +571,12 @@ INSERT INTO ops$publ.BLC_ADMIN_SECTION(ADMIN_SECTION_ID, CEILING_ENTITY, DISPLAY
 INSERT INTO ops$publ.BLC_ADMIN_SECTION(ADMIN_SECTION_ID, CEILING_ENTITY, DISPLAY_CONTROLLER, DISPLAY_ORDER, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, ADMIN_MODULE_ID) VALUES (-3, 'org.broadleafcommerce.core.catalog.domain.ProductOption', null, 3000, 'Product Options', 'ProductOptions', '/product-options', 0, -1);
 INSERT INTO ops$publ.BLC_ADMIN_SECTION(ADMIN_SECTION_ID, CEILING_ENTITY, DISPLAY_CONTROLLER, DISPLAY_ORDER, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, ADMIN_MODULE_ID) VALUES (-2, 'org.broadleafcommerce.core.catalog.domain.Product', null, 2000, 'Product', 'Product', '/product', 0, -1);
 INSERT INTO ops$publ.BLC_ADMIN_SECTION(ADMIN_SECTION_ID, CEILING_ENTITY, DISPLAY_CONTROLLER, DISPLAY_ORDER, NAME, SECTION_KEY, URL, USE_DEFAULT_HANDLER, ADMIN_MODULE_ID) VALUES (-1, 'org.broadleafcommerce.core.catalog.domain.Category', null, 1000, 'Category', 'Category', '/category', 0, -1);
-INSERT INTO ops$publ.BLC_ADMIN_USER(ADMIN_USER_ID, ACTIVE_STATUS_FLAG, EMAIL, LOGIN, NAME, PASSWORD, PHONE_NUMBER) VALUES (-6, 1, 'cms_approver@yourdomain.com', 'cmsApprover', 'CMS Approver', 'admin', null);
-INSERT INTO ops$publ.BLC_ADMIN_USER(ADMIN_USER_ID, ACTIVE_STATUS_FLAG, EMAIL, LOGIN, NAME, PASSWORD, PHONE_NUMBER) VALUES (-5, 1, 'cms_edit@yourdomain.com', 'cmsEditor', 'CMS Editor', 'admin', null);
-INSERT INTO ops$publ.BLC_ADMIN_USER(ADMIN_USER_ID, ACTIVE_STATUS_FLAG, EMAIL, LOGIN, NAME, PASSWORD, PHONE_NUMBER) VALUES (-4, 1, 'csr@yourdomain.com', 'csr', 'CSR', 'admin', null);
-INSERT INTO ops$publ.BLC_ADMIN_USER(ADMIN_USER_ID, ACTIVE_STATUS_FLAG, EMAIL, LOGIN, NAME, PASSWORD, PHONE_NUMBER) VALUES (-3, 1, 'promo@yourdomain.com', 'promo', 'Promotion Manager', 'admin', null);
-INSERT INTO ops$publ.BLC_ADMIN_USER(ADMIN_USER_ID, ACTIVE_STATUS_FLAG, EMAIL, LOGIN, NAME, PASSWORD, PHONE_NUMBER) VALUES (-2, 1, 'merchandise@yourdomain.com', 'merchandise', 'Merchandise Manager', 'admin', null);
-INSERT INTO ops$publ.BLC_ADMIN_USER(ADMIN_USER_ID, ACTIVE_STATUS_FLAG, EMAIL, LOGIN, NAME, PASSWORD, PHONE_NUMBER) VALUES (-1, 1, 'admin@yourdomain.com', 'admin', 'Administrator', 'admin', null);
+INSERT INTO ops$publ.BLC_ADMIN_USER(ADMIN_USER_ID, ACTIVE_STATUS_FLAG, EMAIL, LOGIN, NAME, PASSWORD, PHONE_NUMBER) VALUES (-6, 1, 'cms_approver@yourdomain.com', 'cmsApprover', 'CMS Approver', 'adminn{-6}', null);
+INSERT INTO ops$publ.BLC_ADMIN_USER(ADMIN_USER_ID, ACTIVE_STATUS_FLAG, EMAIL, LOGIN, NAME, PASSWORD, PHONE_NUMBER) VALUES (-5, 1, 'cms_edit@yourdomain.com', 'cmsEditor', 'CMS Editor', 'adminn{-5}', null);
+INSERT INTO ops$publ.BLC_ADMIN_USER(ADMIN_USER_ID, ACTIVE_STATUS_FLAG, EMAIL, LOGIN, NAME, PASSWORD, PHONE_NUMBER) VALUES (-4, 1, 'csr@yourdomain.com', 'csr', 'CSR', 'adminn{-4}', null);
+INSERT INTO ops$publ.BLC_ADMIN_USER(ADMIN_USER_ID, ACTIVE_STATUS_FLAG, EMAIL, LOGIN, NAME, PASSWORD, PHONE_NUMBER) VALUES (-3, 1, 'promo@yourdomain.com', 'promo', 'Promotion Manager', 'adminn{-3}', null);
+INSERT INTO ops$publ.BLC_ADMIN_USER(ADMIN_USER_ID, ACTIVE_STATUS_FLAG, EMAIL, LOGIN, NAME, PASSWORD, PHONE_NUMBER) VALUES (-2, 1, 'merchandise@yourdomain.com', 'merchandise', 'Merchandise Manager', 'adminn{-2}', null);
+INSERT INTO ops$publ.BLC_ADMIN_USER(ADMIN_USER_ID, ACTIVE_STATUS_FLAG, EMAIL, LOGIN, NAME, PASSWORD, PHONE_NUMBER) VALUES (-1, 1, 'admin@yourdomain.com', 'admin', 'Administrator', 'admin{-1}', null);
 INSERT INTO ops$publ.BLC_ADMIN_USER_ROLE_XREF(ADMIN_USER_ID, ADMIN_ROLE_ID) VALUES (-6, -6);
 INSERT INTO ops$publ.BLC_ADMIN_USER_ROLE_XREF(ADMIN_USER_ID, ADMIN_ROLE_ID) VALUES (-5, -5);
 INSERT INTO ops$publ.BLC_ADMIN_USER_ROLE_XREF(ADMIN_USER_ID, ADMIN_ROLE_ID) VALUES (-4, -4);
