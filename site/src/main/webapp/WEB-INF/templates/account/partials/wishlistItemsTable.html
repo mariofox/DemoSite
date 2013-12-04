@@ -2,8 +2,8 @@
     <thead>
         <tr>
             <th colspan="2">Item</th>
-            <th>Quantity</th>
-            <th>Price</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
             <th>Total</th>
             <th>&nbsp;</th>
         </tr>
@@ -24,7 +24,7 @@
             </td>
             <td align="center">
                 <div th:text="*{quantity}"></div>
-                <a class="cartLinkBtn remove_from_wishlist" th:href="@{/account/wishlist/remove(orderItemId=*{id})}">Remove</a>
+                <a class="cartLinkBtn remove_from_wishlist" th:href="@{/account/wishlist/remove(orderItemId=*{id})}">Eliminar</a>
             </td>
             <td align="center" blc:price="*{price}"></td>
 
@@ -33,14 +33,14 @@
             <td align="center">
                 <blc:form method="POST" th:action="@{/account/wishlist/moveItemToCart}">
                     <input type="hidden" name="itemId" th:value="*{id}" />
-                    <input type="submit" class="small red" value="Move Item to Cart"/>
+                    <input type="submit" class="small red" value="Mover &Iacute;tem al Carro"/>
                 </blc:form>
             </td>
         </tr>
         <tr>
             <td colspan="6" align="right" class="last">
                 <blc:form method="POST" th:action="@{/account/wishlist/moveListToCart}">
-                    <input class="medium red" type="submit" value="Move Wishlist to Cart" />
+                    <input class="medium red" type="submit" value="Mover Lista de Deseos al Carro" />
                 </blc:form>
             </td>
         </tr>
