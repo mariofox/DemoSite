@@ -1,10 +1,14 @@
 package com.suramericana.service.security.seus;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.broadleafcommerce.profile.core.domain.Customer;
+import org.broadleafcommerce.profile.core.domain.CustomerAttribute;
+import org.broadleafcommerce.profile.core.domain.CustomerAttributeImpl;
 import org.broadleafcommerce.profile.core.service.CustomerService;
 import org.broadleafcommerce.profile.core.service.UserDetailsServiceImpl;
 import org.json.JSONObject;
@@ -55,7 +59,17 @@ public class SeusUserDetailsService extends UserDetailsServiceImpl {
 				customer.setLastName( lastname );
 				customer.setEmailAddress( jsonInfoFromToken.getString("email") );
 				customer.setPassword("Desconocido");
-				//TODO: campo para DNI
+				
+				CustomerAttribute customerDniAttr = new CustomerAttributeImpl();
+				customerDniAttr.setName("DNI");
+				customerDniAttr.setValue( jsonInfoFromToken.getString("dni") );
+				customerDniAttr.setCustomer(customer);
+				
+				Map<String, CustomerAttribute> mapCustomerAttribute = new HashMap<String, CustomerAttribute>();
+				
+				mapCustomerAttribute.put("DNI", customerDniAttr);
+				
+				customer.setCustomerAttributes(mapCustomerAttribute);
 				
 			}
 			else {
