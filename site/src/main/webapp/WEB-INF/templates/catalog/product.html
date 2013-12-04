@@ -127,7 +127,7 @@
                 <div id="customer-reviews-container">
                     <blc:ratings itemId="${product.id}" />
                     <div th:if="${ratingSummary}" th:object="${ratingSummary}">
-                        <span class="title">Community Rating</span>
+                        <span class="title">Calificaci&oacute;n de los usuarios</span>
                         <div id="community-rating-container">
                             <blc:form id="community-rating" class="star-rating" th:attr="data-community-rating=*{averageRating}">
                                 <input type="radio" class="star {split:4}" /> 
@@ -159,7 +159,7 @@
                         <div class="clearfix"></div>
                             <blc:ratings itemId="${product.id}" />
                             <div th:if="${currentCustomerReview}" th:object="${currentCustomerReview}" class="customer-reviews current-customer-review">
-                                <h4>Your Review</h4>
+                                <h4>Tu Comentario</h4>
                                 <p class="voting-summary" th:if="*{notHelpfulCount()} + *{helpfulCount()} > 0">
                                     <span th:text="*{helpfulCount()}">9</span> of 
                                     <span th:text="*{notHelpfulCount()} + *{helpfulCount()}">10</span> found the following review helpful
@@ -175,10 +175,10 @@
                                     on <span th:text="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
                                 </span>
                                 <div class="clearfix"></div>
-                                <blockquote th:if="!*{#strings.isEmpty(reviewText)}" th:text="'&quot;' + *{reviewText} + '&quot;'">Review Text</blockquote>                         
+                                <blockquote th:if="!*{#strings.isEmpty(reviewText)}" th:text="'&quot;' + *{reviewText} + '&quot;'">Comentario</blockquote>                         
                             </div>
                         <div class="helpful-reviews">
-                            <h4>Customer Reviews</h4>
+                            <h4>Comentarios de otros usuarios</h4>
                             <ul class="customer-reviews">
                                 <li th:each="review, iterStat : *{reviews}" th:object="${review}" th:if="${iterStat.count} lt 4">
                                     <p class="voting-summary" th:if="*{notHelpfulCount()} + *{helpfulCount()} > 0">
@@ -193,32 +193,32 @@
                                         <input type="radio" class="star" />
                                     </blc:form>
                                     <span class="reviewer-info">
-                                        by <span class="penname" th:text="${review.customer.firstName}">John</span> on  
+                                        Por <span class="penname" th:text="${review.customer.firstName}">John</span> on  
                                         <span th:text="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
                                     </span>
                                     <div class="clearfix"></div>
-                                    <blockquote th:if="!*{#strings.isEmpty(reviewText)}" th:text="'&quot;' + *{reviewText} + '&quot;'">Review Text</blockquote>
+                                    <blockquote th:if="!*{#strings.isEmpty(reviewText)}" th:text="'&quot;' + *{reviewText} + '&quot;'">Comentario</blockquote>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div th:if="${customer.loggedIn}">
                         <div th:if="${ratingSummary}">
-                            <a th:unless="${currentCustomerReview}" class="create-review" th:href="@{'/reviews/product/' + ${product.id}}">Create a review</a> 
+                            <a th:unless="${currentCustomerReview}" class="create-review" th:href="@{'/reviews/product/' + ${product.id}}">Comentar</a> 
                         </div>
                         <div th:unless="${ratingSummary}">
-                            <a th:href="@{'/reviews/product/' + ${product.id}}" class="create-review">Be the first to write a review!</a>
+                            <a th:href="@{'/reviews/product/' + ${product.id}}" class="create-review">Se el primero en comentar sobre este producto!</a>
                         </div>
                     </div>
                     <div th:unless="${customer.loggedIn}">
-                        <a th:if="${ratingSummary}" href="#" th:href="@{/login}" class="small dark account">Login to create a review</a>
-                        <a th:unless="${ratingSummary}" th:href="@{/login}" class="account">Login and be the first to write a review!</a>
+                        <a th:if="${ratingSummary}" href="#" th:href="@{/login}" class="small dark account">Inicia sesi&oacute; para comentar sobre este producto</a>
+                        <a th:unless="${ratingSummary}" th:href="@{/login}" class="account">Inicia sesi&oacute;n y se el primero en escribir un comentario!</a>
                     </div>
                 </div>          
         </section>
     
         <section id="right_column">
-            <header>Featured Products</header>
+            <header>Productos Relacionados</header>
             <div id="options">
                 <div class="section">
                      <blc:related_products type="CROSS_SALE" productId="${product.id}"/>   
