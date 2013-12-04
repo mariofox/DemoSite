@@ -6,8 +6,7 @@ import java.util.Collection;
 import javax.annotation.Resource;
 
 import org.apache.http.client.ClientProtocolException;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import org.json.JSONObject;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.ProviderNotFoundException;
@@ -46,7 +45,7 @@ public class SeusCustomAuthenticationProvider implements AuthenticationProvider 
             throw new BadCredentialsException("Wrong password.");
         }
         
-        UserDetails user = userDetailsService.loadUserByUsername(username);
+        UserDetails user = userDetailsService.loadUserByUsername(username + ":.:" + authSeusResponse.getString("tokenMus"));
         
         if (user == null) {
             throw new BadCredentialsException("Username not found.");
