@@ -207,12 +207,12 @@
                             <a th:unless="${currentCustomerReview}" class="create-review" th:href="@{'/reviews/product/' + ${product.id}}">Comentar</a> 
                         </div>
                         <div th:unless="${ratingSummary}">
-                            <a th:href="@{'/reviews/product/' + ${product.id}}" class="create-review">Se el primero en comentar sobre este producto!</a>
+                            <a th:href="@{'/reviews/product/' + ${product.id}}" class="create-review">&#161;Se el primero en comentar sobre este producto!</a>
                         </div>
                     </div>
                     <div th:unless="${customer.loggedIn}">
-                        <a th:if="${ratingSummary}" href="#" th:href="@{/login}" class="small dark account">Inicia sesi&oacute; para comentar sobre este producto</a>
-                        <a th:unless="${ratingSummary}" th:href="@{/login}" class="account">Inicia sesi&oacute;n y se el primero en escribir un comentario!</a>
+                        <a th:if="${ratingSummary}" href="#" th:href="@{/login}" class="small dark account">Inicia sesi&oacute;n para comentar sobre este producto</a>
+                        <a th:unless="${ratingSummary}" th:href="@{/login}" class="account">&#161;Inicia sesi&oacute;n y se el primero en escribir un comentario!</a>
                     </div>
                 </div>          
         </section>
