@@ -281,29 +281,25 @@
     
     
     <!-- Configuración para Inventario Sura en AddOrder -->
-    <!-- <bean p:order="1500" id="suraAddItemOrderCheckInventory" class="com.suramericana.order.service.workflow.SuraAddItemOrderCheckInventory" /> -->
+    <bean p:order="6000" id="suraAddItemOrderCheckInventoryActivity" class="com.suramericana.order.service.workflow.SuraAddItemOrderCheckInventoryActivity" />
     
     <!-- Add Item Workflow Configuration -->
-    <!-- <bean id="blAddItemWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
+    <bean id="blAddItemWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
         <property name="processContextFactory">
             <bean class="org.broadleafcommerce.core.order.service.workflow.CartOperationProcessContextFactory"/>
         </property>
         <property name="activities">
             <list>
-                <ref bean="blValidateAddRequestActivity" />
-                <ref bean="blAddOrderItemActivity" />
-                <ref bean="blAddFulfillmentGroupItemActivity" />
-                <ref bean="blAddWorkflowPriceOrderIfNecessaryActivity" />
-                <ref bean="blAddWorkflowVerifyFulfillmentGroupItemsActivity" />
+                <ref bean="suraAddItemOrderCheckInventoryActivity" />
             </list>
         </property>
         <property name="defaultErrorHandler" ref="blDefaultErrorHandler"/>
-    </bean> -->
+    </bean>
     <!-- Fin configuración para Inventario Sura en AddOrder -->
     
     
     <!-- Configuración para Inventario Sura en UpdateItemOrder -->
-    <!-- <bean p:order="1500" id="suraUpdateItemOrderCheckInventory" class="com.suramericana.order.service.workflow.SuraUpdateItemOrderCheckInventory" />
+    <!-- <bean p:order="1500" id="suraUpdateItemOrderCheckInventoryActivity" class="com.suramericana.order.service.workflow.SuraUpdateItemOrderCheckInventoryActivity" />
     
     <bean p:order="1000" id="blValidateUpdateRequestActivity" class="org.broadleafcommerce.core.order.service.workflow.update.ValidateUpdateRequestActivity"/>
     <bean p:order="2000" id="blUpdateOrderItemActivity" class="org.broadleafcommerce.core.order.service.workflow.update.UpdateOrderItemActivity"/>
@@ -320,7 +316,7 @@
         <property name="activities">
             <list>
                 <ref bean="blValidateUpdateRequestActivity" />
-                <ref bean="suraUpdateItemOrderCheckInventory" />
+                <ref bean="suraUpdateItemOrderCheckInventoryActivity" />
                 <ref bean="blUpdateOrderItemActivity" />
                 <ref bean="blUdateOrderMultishipOptionActivity" />
                 <ref bean="blUpdateFulfillmentGroupItemActivity" />
