@@ -6,6 +6,7 @@
              
     <persistence-unit name="blPU" transaction-type="RESOURCE_LOCAL">
         <non-jta-data-source>jdbc/web</non-jta-data-source>
+        <class>com.suramericana.inventory.basic.domain.ext.SuraBasicInventoryContainerImpl</class>
         <exclude-unlisted-classes/>
     </persistence-unit>
     
