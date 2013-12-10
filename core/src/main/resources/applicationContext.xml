@@ -50,5 +50,95 @@
 <!--         <property name="collectionRef" value="customClassTransformers" /> -->
 <!--         <property name="targetRef" value="blMergedClassTransformers" /> -->
 <!--     </bean> -->
+
+	<!-- <import resource="classpath:/bl-basic-inventory-base-applicationContext.xml" /> -->
+	
+	<!-- baseapplication context -->
+    <context:component-scan base-package="org.broadleafcommerce.inventory.basic" />
+    
+    <bean class="org.broadleafcommerce.common.logging.ModuleLifecycleLoggingBean">
+        <property name="moduleName" value="broadleaf-basic-inventory"/>
+        <property name="lifeCycleEvent" value="LOADING"/>
+    </bean>
+
+    <bean id="blMergedPersistenceXmlLocations" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list>
+                <value>classpath*:/META-INF/persistence-basic-inventory.xml</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean p:order="2100" id="blBasicInventoryCheckAvailabilityActivity" 
+        class="org.broadleafcommerce.inventory.basic.service.workflow.CheckBasicInventoryAvailabilityActivity"/>
+    
+    <bean p:order="2100" id="blBasicInventoryDecrementActivity" 
+        class="org.broadleafcommerce.inventory.basic.service.workflow.DecrementBasicInventoryActivity">
+        <property name="rollbackHandler">
+            <bean class="org.broadleafcommerce.inventory.basic.service.workflow.BasicInventoryRollbackHandler"/>
+        </property>
+    </bean>
+    
+    <bean id="blAddItemWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
+        <property name="activities">
+            <list>
+                <ref bean="blBasicInventoryCheckAvailabilityActivity"/>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="blUpdateItemWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
+        <property name="activities">
+            <list>
+                <ref bean="blBasicInventoryCheckAvailabilityActivity"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="blCheckoutWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
+        <property name="activities">
+            <list>
+                <ref bean="blBasicInventoryDecrementActivity"/>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="messageSource" class="org.broadleafcommerce.common.util.BroadleafMergeResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>classpath:/messages/basicInventoryMessages</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="blBasicInventoryDao" class="org.broadleafcommerce.inventory.basic.dao.BasicInventoryDaoImpl"/>
+    <bean id="blBasicInventoryService" class="org.broadleafcommerce.inventory.basic.service.BasicInventoryServiceImpl"/>
+    
+    <!-- app context -->
+    
+    <!-- <context:load-time-weaver /> -->
+    
+    <!-- <bean id="blBasicInventoryEntityTransformer" class="org.broadleafcommerce.common.extensibility.jpa.copy.DirectCopyClassTransformer">
+        <constructor-arg name="moduleName" value="BasicInventoryModule" />
+        <property name="xformTemplates">
+            <map>
+                <entry>
+                    <key><value>org.broadleafcommerce.core.catalog.domain.SkuImpl</value></key>
+                    <value>org.broadleafcommerce.inventory.basic.domain.ext.BasicInventoryContainerImpl</value>
+                </entry>
+            </map>
+        </property>
+    </bean> -->
+    
+    <!-- <bean id="blMergedClassTransformers" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list>
+                <ref bean="blBasicInventoryEntityTransformer" />
+            </list>
+        </property>
+    </bean> -->
+    
+    
+    
     
 </beans>

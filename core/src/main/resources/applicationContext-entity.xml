@@ -24,4 +24,6 @@
         class="com.suramericana.inventory.basic.domain.ext.SuraBasicInventoryContainerImpl"
         scope="prototype"/> -->
         
+        <bean id="org.broadleafcommerce.core.catalog.domain.Sku" class="org.broadleafcommerce.inventory.basic.domain.ext.BasicInventoryContainerImpl" scope="prototype"/>
+        
 </beans>
