@@ -280,5 +280,6 @@
         <module>admin</module>
         <module>core</module>
         <module>site</module>
+        <module>ear</module>
     </modules>
 </project>
