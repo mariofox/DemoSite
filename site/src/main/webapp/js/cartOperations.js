@@ -122,6 +122,9 @@ $(function(){
                         	$productOptionsSpan.css('display', 'block');
                         	$productOptionsSpan.effect('highlight', {}, 1000);
                         	
+                        } else if (data.error == 'BasicInventoryUnavailable') {
+                        	HC.showNotification("No hay cantidades disponibles de este producto");
+                        
                         } else {
                             HC.showNotification("Error adicionando al carrito");
                         }

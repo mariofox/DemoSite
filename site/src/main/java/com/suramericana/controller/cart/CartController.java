@@ -27,6 +27,7 @@ import org.broadleafcommerce.core.pricing.service.exception.PricingException;
 import org.broadleafcommerce.core.web.controller.cart.BroadleafCartController;
 import org.broadleafcommerce.core.web.order.CartState;
 import org.broadleafcommerce.core.web.order.model.AddToCartItem;
+import org.broadleafcommerce.inventory.basic.service.BasicInventoryUnavailableException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -77,7 +78,7 @@ public class CartController extends BroadleafCartController {
                 // product options. The user may want the product in another version of the options as well.
                 responseMap.put("productId", addToCartItem.getProductId());
             }
-        } catch (AddToCartException e) {
+        } catch (Exception e) {
             if (e.getCause() instanceof RequiredAttributeNotProvidedException) {
                 responseMap.put("error", "allOptionsRequired");
             } else if (e.getCause() instanceof ProductOptionValidationException) {
@@ -86,8 +87,12 @@ public class CartController extends BroadleafCartController {
                 responseMap.put("errorCode", exception.getErrorCode());
                 responseMap.put("errorMessage", exception.getMessage());
                 //blMessages.getMessage(exception.get, lfocale))
+            } else if (e.getCause() instanceof BasicInventoryUnavailableException){
+            	BasicInventoryUnavailableException inventoryException = (BasicInventoryUnavailableException) e.getCause();
+            	responseMap.put("error", "BasicInventoryUnavailable");
+            	responseMap.put("errorMessage", inventoryException.getMessage());
             } else {
-                throw e;
+                throw (AddToCartException)e;
             }
         }
         
