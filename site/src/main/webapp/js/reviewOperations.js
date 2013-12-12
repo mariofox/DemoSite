@@ -42,9 +42,18 @@ $(function(){
         return false;
     });
     
+    // Reload page if close fancybox
+    $('body').on('click', '.fancybox-close', function() {
+        location.reload();
+    });
+    
     // All form actions will be submitted via AJAX
     $('body').on('click','.fancybox-inner input.review_button', function() {
         var $form = $(this).closest("form");
+        if( !$(".star-rating-applied[checked]").val() ) {
+        	alert("Debes ingresar una calificación");
+        	return false;
+        }
         BLC.ajax({url: $form.attr('action'), 
                 type: "POST",
                 data: $form.serialize()
