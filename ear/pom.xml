@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.suramericana</groupId>
 	<artifactId>ear</artifactId>
 	<packaging>ear</packaging>
-	<version>1.0</version>	
+	<name>ear</name>
 	<parent>
-        <groupId>com.suramericana</groupId>
-        <artifactId>ecommerce-website</artifactId>
-        <version>1.0</version>
-    </parent>
+		<groupId>com.suramericana</groupId>
+		<artifactId>ecommerce-website</artifactId>
+		<version>1.0</version>
+	</parent>
 	<dependencies>
 		<dependency>
 			<groupId>com.suramericana</groupId>
@@ -32,21 +29,21 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-ear-plugin</artifactId>
-		        <version>2.9</version>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.9</version>
 				<configuration>
-				 <modules>
-		            <webModule>
-		              <groupId>com.suramericana</groupId>
-		              <artifactId>admin</artifactId>
-		              <contextRoot>/suramarketplace-admin</contextRoot>
-		            </webModule>
-		            <webModule>
-		              <groupId>com.suramericana</groupId>
-		              <artifactId>site</artifactId>
-		              <contextRoot>/suramarketplace</contextRoot>
-		            </webModule>
-		          </modules>				
+					<modules>
+						<webModule>
+							<groupId>com.suramericana</groupId>
+							<artifactId>admin</artifactId>
+							<contextRoot>/suramarketplace-admin</contextRoot>
+						</webModule>
+						<webModule>
+							<groupId>com.suramericana</groupId>
+							<artifactId>site</artifactId>
+							<contextRoot>/suramarketplace</contextRoot>
+						</webModule>
+					</modules>
 				</configuration>
 			</plugin>
 		</plugins>
