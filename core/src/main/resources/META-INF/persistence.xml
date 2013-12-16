@@ -6,10 +6,6 @@
              
     <persistence-unit name="blPU" transaction-type="RESOURCE_LOCAL">
         <non-jta-data-source>jdbc/web</non-jta-data-source>
-        <mapping-file>config/bc/jpa/inventory/basic/SkuInventory.orm.xml</mapping-file>
-        <mapping-file>config/bc/jpa/inventory/basic/EntitySkuInventory.orm.xml</mapping-file>
-        <class>org.broadleafcommerce.inventory.basic.domain.ext.BasicInventoryContainerImpl</class>
-        <class>org.broadleafcommerce.core.catalog.domain.SkuImpl</class>
         <exclude-unlisted-classes/>
     </persistence-unit>
     
