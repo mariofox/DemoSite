@@ -24,6 +24,7 @@
                 <ul th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}">
                     <li th:each="doi : *{discreteOrderItems}" th:text="${doi.quantity + ' x ' + doi.name}" />
                 </ul>
+                <span style="display: none;color: red;font-size: 13px" th:class="${'errorSpan errorInventory'} + *{product.id}">No inventario</span>
             </td>
             <td align="center">
                 <blc:form method="POST" th:action="@{/cart/updateQuantity}">
@@ -41,7 +42,7 @@
             <span  blc:price="*{totalAdjustmentValue}" ></span>
                  <div class="productOptions" th:substituteby="catalog/partials/offers :: offers"/>
              </td>
-            <td th:if="!${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" blc:price="*{totalPrice}"></td>
+            <td th:if="!${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" th:id="${'totalValue' + item.id}" blc:price="*{totalPrice}"></td>
             <td th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}" align="center" class="value" blc:price="*{totalPrice}"></td>
         </tr>
     </tbody>

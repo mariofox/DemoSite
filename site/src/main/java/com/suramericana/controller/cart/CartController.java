@@ -18,6 +18,8 @@ package com.suramericana.controller.cart;
 
 
 import org.broadleafcommerce.core.catalog.domain.Product;
+import org.broadleafcommerce.core.order.domain.DiscreteOrderItem;
+import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.order.service.exception.AddToCartException;
 import org.broadleafcommerce.core.order.service.exception.ProductOptionValidationException;
 import org.broadleafcommerce.core.order.service.exception.RemoveFromCartException;
@@ -28,6 +30,7 @@ import org.broadleafcommerce.core.web.controller.cart.BroadleafCartController;
 import org.broadleafcommerce.core.web.order.CartState;
 import org.broadleafcommerce.core.web.order.model.AddToCartItem;
 import org.broadleafcommerce.inventory.basic.service.BasicInventoryUnavailableException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -38,6 +41,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -114,11 +118,37 @@ public class CartController extends BroadleafCartController {
             return "redirect:" + product.getUrl();
         }
     }
-    
-    @RequestMapping("/updateQuantity")
-    public String updateQuantity(HttpServletRequest request, HttpServletResponse response, Model model, RedirectAttributes redirectAttributes,
+    @RequestMapping(value = "/updateQuantity", produces = "application/json")
+    public @ResponseBody Map<String, Object> updateQuantity(HttpServletRequest request, HttpServletResponse response, Model model, RedirectAttributes redirectAttributes,
             @ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, UpdateCartException, RemoveFromCartException {
-        return super.updateQuantity(request, response, model, addToCartItem);
+    	Order cart = CartState.getCart();
+    	Map<String, Object> responseMap = new HashMap<String, Object>();
+    	responseMap.put("productId", addToCartItem.getProductId() );
+        try {
+			super.updateQuantity(request, response, model, addToCartItem);
+		} catch (Exception e) {
+			if (e.getCause() instanceof BasicInventoryUnavailableException){
+            	BasicInventoryUnavailableException inventoryException = (BasicInventoryUnavailableException) e.getCause();
+            	responseMap.put("error", "BasicInventoryUnavailable");
+            	responseMap.put("errorMessage", inventoryException.getMessage());
+            	responseMap.put("errorInventoryQuantityAvailable", inventoryException.getQuantityAvailable() );
+            	return responseMap;
+			}
+		}
+        
+        if (isAjaxRequest(request)) {
+        	List<DiscreteOrderItem> listOrderItems = cart.getDiscreteOrderItems();
+        	//Buscar item en la orden equivalente al item actual y agregar precio a la respuesta
+        	for (DiscreteOrderItem actualItemDiscrete : listOrderItems){
+        		if ( actualItemDiscrete.getProduct().getId().equals( addToCartItem.getProductId() )  ) {
+        			responseMap.put("productTotalPrice", actualItemDiscrete.getTotalPrice().getAmount() );
+        			responseMap.put("orderItemId", actualItemDiscrete.getId() );
+        			break;
+        		}
+        	}
+			responseMap.put("orderTotalPrice", cart.getTotal().getAmount() );
+        }
+        return responseMap;
     }
     
     @Override

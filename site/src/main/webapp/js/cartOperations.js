@@ -54,6 +54,12 @@ $(function(){
         $('.productActions' + productId).children('.add_to_'+orderType).removeClass('hidden');
         $('.productActions' + productId).children('.in_'+orderType).addClass('hidden');
     }
+    
+    // Actualiza valor total del producto y valor total de la orden en el fancybox de orden
+    function updatePricesProductOrder(orderItemId, productTotalPrice, orderTotalPrice) {
+    	$('#totalValue' + orderItemId).html('$ ' + productTotalPrice);
+    	$('#subtotal').html('$ ' + orderTotalPrice);
+    }
 
     // Show the cart in a modal when any link with the class "fancycart" is clicked
     $('body').on('click', 'a.fancycart', function() {
@@ -157,19 +163,28 @@ $(function(){
     // This will trigger on any input with class "updateQuantity"
     $('body').on('click', 'input.updateQuantity', function() {
         var $form = $(this).closest('form');
-        
+        $('.errorInventory' + $form.children('input[name="productId"]').val() ).hide();
         BLC.ajax({url: $form.attr('action'),
                 type: "POST", 
+                dataType: "json",
                 data: $form.serialize() 
             }, function(data, extraData) {
-                if (extraData) {
-                    updateHeaderCartItemsCount(extraData.cartItemCount);
-                    if ($form.children('input.quantityInput').val() == 0) {
-                        showAddToCartButton(extraData.productId, 'cart');
+            	if(!data.error) {
+            		updatePricesProductOrder(data.orderItemId, data.productTotalPrice, data.orderTotalPrice);
+            		if (extraData) {
+                        updateHeaderCartItemsCount(extraData.cartItemCount);
+                        if ($form.children('input.quantityInput').val() == 0) {
+                            showAddToCartButton(extraData.productId, 'cart');
+                        }
                     }
-                }
+            	} else if ( data.error == 'BasicInventoryUnavailable' ) {
+            		$('.errorInventory' + data.productId).show();
+            		$('.errorInventory' + data.productId).html('Sólo hay ' + data.errorInventoryQuantityAvailable + ' unidades de este producto');
+            		
+            	}
+                
 
-                $('.fancybox-inner').html(data);
+                //$('.fancybox-inner').html(data);
             }
         );
         return false;
