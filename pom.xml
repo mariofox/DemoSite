@@ -273,13 +273,6 @@
                 <type>jar</type>
                 <scope>compile</scope>
             </dependency>
-            <dependency>
-    			<groupId>jdk.tools</groupId>
-    			<artifactId>jdk.tools</artifactId>
-    			<scope>system</scope>
-    			<version>1.6</version>
-   				<systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
-			</dependency>
         </dependencies>
     </dependencyManagement>
     <modules>
