@@ -42,11 +42,6 @@ $(function(){
         return false;
     });
     
-    // Reload page if close fancybox
-    $('body').on('click', '.fancybox-close', function() {
-        location.reload();
-    });
-    
     // All form actions will be submitted via AJAX
     $('body').on('click','.fancybox-inner input.review_button', function() {
         var $form = $(this).closest("form");
@@ -58,6 +53,7 @@ $(function(){
                 type: "POST",
                 data: $form.serialize()
             }, function(responseData) {
+            	location.reload();
                 $('.fancybox-inner').html(responseData);
             }
         );
