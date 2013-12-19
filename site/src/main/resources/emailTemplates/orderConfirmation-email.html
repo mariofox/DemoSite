@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <title>Sura Marketplace - Confirmacin de orden</title>
+      <title>Sura Marketplace - Confirmación de orden</title>
   </head>
 
   <body style="margin: 0; padding: 0;">
@@ -11,7 +11,7 @@
                 <table width="900" cellpadding="0" cellspacing="0" border="0" style="background-color: #fff; margin: 0 auto; margin-bottom: 60px;">
                     <tr>
                         <td  width="100%" style="font: normal 30px/30px &#39;Helvetica&#39; sans-serif; color: white" colspan="2">
-                            <img alt="Header Sura" src="http://www.sura.com/imagenes/bgHeader.gif"/>
+                            <img alt="Orden en Sura Marketplace" src="http://formacionvirtual.suramericana.com/moodle/theme/foodle/images/logo.jpg"/>
                         </td>
                     </tr>
                     <tr>
@@ -111,15 +111,13 @@
                                             [[*{address.phonePrimary.phoneNumber}]]<br/>
                                             [[*{address.addressLine1}]]<br/>
                                             [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
-                                            [[*{address.emailAddress}]]<br/>
+                                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]<br/>
                                         </address>
                                         <address th:if="*{address.phonePrimary == null}">
                                             [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
                                             [[*{address.addressLine1}]]<br/>
                                             [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
-                                            [[*{address.emailAddress}]]<br/>
+                                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]<br/>
                                         </address>
                                     </td>
                                     <td>
@@ -190,15 +188,13 @@
                                             [[*{address.phonePrimary}]]<br/>
                                             [[*{address.addressLine1}]]<br/>
                                             [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
-                                            [[*{address.emailAddress}]]<br/>
+                                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]<br/>
                                         </address>
                                         <address th:if="*{address.phonePrimary == null}">
                                             [[*{address.firstName}]]&nbsp;[[*{address.lastName}]]<br/>
                                             [[*{address.addressLine1}]]<br/>
                                             [[*{address.addressLine2}]]<br th:if="!*{#strings.isEmpty(address.addressLine2)}"/>
-                                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]&nbsp;[[*{address.postalCode}]]<br/>
-                                            [[*{address.emailAddress}]]<br/>
+                                            [[*{address.city}]],&nbsp;[[*{address.state.abbreviation}]]<br/>
                                         </address>
                                     </td>
                                     <td>
@@ -208,9 +204,7 @@
                                                     <h3 style="font: 14px/18px 'Oxygen', Helvetica, sans-serif; margin: 0 0 5px 0;padding: 0;">
                                                         Informaci&oacute;n de Pago
                                                     </h3>
-                                                    <b th:text="*{additionalFields['CARD_TYPE']}"/><br/>
-                                                    ****<span th:text="*{additionalFields['LAST_FOUR']}"/><br/>
-                                                    exp. <span th:text="*{additionalFields['EXP_MONTH']}"/>/<span th:text="*{additionalFields['EXP_YEAR']}"/>
+                                                    <b th:text="*{type.friendlyType}"/><br/>
                                                 </td>
                                             </tr>
 
