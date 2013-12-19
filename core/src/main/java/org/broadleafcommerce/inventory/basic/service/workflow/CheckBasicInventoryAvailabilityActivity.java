@@ -46,7 +46,6 @@ public class CheckBasicInventoryAvailabilityActivity extends BaseActivity<CartOp
     @Override
     public CartOperationContext execute(CartOperationContext context) throws Exception {
 
-    	System.out.println("En CheckBasicInventoryAvailabilityActivity");
         CartOperationRequest request = context.getSeedData();
         HashMap<Long, Integer> skuQuantities = new HashMap<Long, Integer>();
         OrderItem orderItem = request.getAddedOrderItem();

@@ -51,7 +51,6 @@ public class DecrementBasicInventoryActivity extends BaseActivity<CheckoutContex
     @Override
     public CheckoutContext execute(CheckoutContext context) throws Exception {
 
-    	System.out.println("En DecrementBasicInventoryActivity");
         CheckoutSeed seed = context.getSeedData();
         List<OrderItem> orderItems = seed.getOrder().getOrderItems();
 
@@ -85,9 +84,7 @@ public class DecrementBasicInventoryActivity extends BaseActivity<CheckoutContex
         }
 
         if (!skuInventoryMap.isEmpty()) {
-        	System.out.println("MAP de skuInventoryMap" + skuInventoryMap);
             inventoryService.decrementInventory(skuInventoryMap);
-            System.out.println("is available Sku 6:" + inventoryService.isAvailable(new Long(6), new Integer(1)) );
         }
 
         if (getRollbackHandler() != null && !getAutomaticallyRegisterRollbackHandler()) {
