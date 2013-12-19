@@ -1826,7 +1826,7 @@ footer {
 input[type="submit"].big, a.big-button, 
 input[type="submit"].medium, a.medium-button,
 input[type="submit"].small, a.small-button,
-.addToCart, a.inCart {
+.addToCart, a.inCart, .noInventory {
     -webkit-transition: background-color 0.2s ease-in;  
     -moz-transition: background-color 0.2s ease-in;  
     -o-transition: background-color 0.2s ease-in;  
@@ -1839,7 +1839,7 @@ input[type="submit"].small, a.small-button,
     text-decoration: none;
 }
 
-input[type="submit"].big, a.big-button, .addToCart, a.inCart {
+input[type="submit"].big, a.big-button, .addToCart, a.inCart, .noInventory {
     font: 16px/16px 'Open Sans', Helvetica, sans-serif;
     font-weight: 600;
     margin: 10px auto 0;
@@ -1873,7 +1873,7 @@ input[type="submit"].dark, a.dark-button, #featured_products .addToCart {
     background-color: #3D0001;
 }
     
-input[type="submit"].gray, a.gray-button, a.inCart {
+input[type="submit"].gray, a.gray-button, a.inCart, .noInventory {
     color: white;
     background-color: #BBAFAE;
 }
@@ -1882,7 +1882,7 @@ input[type="submit"].gray, a.gray-button, a.inCart {
 input[type="submit"].big:hover, a.big-button:hover, 
 input[type="submit"].medium:hover, a.medium-button:hover,
 input[type="submit"].small:hover, a.small-button:hover,
-.addToCart, a.inCart {
+.addToCart, a.inCart, .noInventory {
     -webkit-transition: background-color 0.2s ease-in;  
     -moz-transition: background-color 0.2s ease-in;  
     -o-transition: background-color 0.2s ease-in;  
@@ -1893,7 +1893,7 @@ input[type="submit"].red:hover, a.red-button:hover, .addToCart:hover {
     background-color: #a50832;
 }
 
-input[type="submit"].gray:hover, a.gray-button:hover, a.inCart:hover {
+input[type="submit"].gray:hover, a.gray-button:hover, a.inCart:hover, .noInventory:hover {
     background-color: #9B8A87;
 }
 

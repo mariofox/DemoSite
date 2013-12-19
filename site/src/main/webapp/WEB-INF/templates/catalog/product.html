@@ -49,7 +49,10 @@
                         <div class="add_to_cart" th:classappend="${cart.containsSku(#object.defaultSku)}? ' hidden'">
                             <input type="hidden" name="productId" th:value="*{id}" />
                             <input type="hidden" name="quantity" value="1" />
-                            <input type="submit" class="addToCart big red" th:value="#{product.buyNow}"/>
+                            <input th:if="*{defaultSku.QuantityAvailable} > 0" type="submit" class="addToCart big red" th:value="#{product.buyNow}"/>
+                            <div th:if="*{defaultSku.QuantityAvailable} == 0" class="in_cart" >
+						        <span class="noInventory" th:text="#{product.noInventory}">No Inventory</span>
+						    </div>
                         </div>
             <p class="error" th:if="${param.errorMessage}" th:text="${param.errorMessage[0]}"></p>
                     </div>

@@ -31,6 +31,12 @@
                <mo:property name="readOnly" value="false" />
            </mo:field>
        </mo:overrideItem>
+       <!-- Configuración para hacer cantidad de inventario requerida-->
+       <mo:overrideItem ceilingEntity="org.broadleafcommerce.core.catalog.domain.Product">
+            <mo:field name="defaultSku.basicQuantityAvailable">
+                <mo:property name="requiredOverride" value="true" />
+            </mo:field>
+        </mo:overrideItem>
    </mo:override>
    <!-- Configuración para hacer status de orden editable -->
         
