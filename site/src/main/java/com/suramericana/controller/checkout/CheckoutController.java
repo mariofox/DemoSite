@@ -164,7 +164,6 @@ public class CheckoutController extends BroadleafCheckoutController {
 	    	suraBillingInfoFormValidator.validate(billingForm, result);
             if (result.hasErrors()) {
                 populateModelWithShippingReferenceData(request, model);
-                System.out.println("Error de validacion, a retornar checkout view");
                 return getCheckoutView();
             }
 	    	

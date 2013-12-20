@@ -17,7 +17,6 @@ public class SuraBillingInfoFormValidator extends BillingInfoFormValidator{
 
 	@Override
     public void validate(Object obj, Errors errors) {
-		System.out.println("En validate de Sura billing form");
         BillingInfoForm billingInfoForm = (BillingInfoForm) obj;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address.firstName", "firstName.required");
