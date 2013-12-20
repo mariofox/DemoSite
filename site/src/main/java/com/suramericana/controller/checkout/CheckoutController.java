@@ -22,6 +22,7 @@ import org.broadleafcommerce.core.checkout.service.exception.CheckoutException;
 import org.broadleafcommerce.core.checkout.service.workflow.CheckoutResponse;
 import org.broadleafcommerce.core.order.domain.FulfillmentGroup;
 import org.broadleafcommerce.core.order.domain.Order;
+import org.broadleafcommerce.core.order.service.exception.RequiredAttributeNotProvidedException;
 import org.broadleafcommerce.core.payment.domain.PaymentInfo;
 import org.broadleafcommerce.core.payment.domain.Referenced;
 import org.broadleafcommerce.core.payment.service.type.PaymentInfoType;
@@ -32,6 +33,7 @@ import org.broadleafcommerce.core.web.checkout.model.BillingInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderInfoForm;
 import org.broadleafcommerce.core.web.checkout.model.OrderMultishipOptionForm;
 import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
+import org.broadleafcommerce.core.web.checkout.validator.BillingInfoFormValidator;
 import org.broadleafcommerce.core.web.controller.checkout.BroadleafCheckoutController;
 import org.broadleafcommerce.core.web.order.CartState;
 import org.broadleafcommerce.profile.core.domain.CustomerAddress;
@@ -47,6 +49,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.suramericana.payment.service.cajasap.SuraCajaSapPaymentInfoType;
+import com.suramericana.web.validator.SuraBillingInfoFormValidator;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -62,6 +65,9 @@ public class CheckoutController extends BroadleafCheckoutController {
 	
 	@Resource(name = "blPaymentInfoService")
     protected PaymentInfoService paymentInfoService;
+	
+	@Resource(name = "suraBillingInfoFormValidator")
+    protected SuraBillingInfoFormValidator suraBillingInfoFormValidator;
 
     /*
     * The Checkout page for Heat Clinic will have the shipping information pre-populated 
@@ -143,8 +149,9 @@ public class CheckoutController extends BroadleafCheckoutController {
             @ModelAttribute("billingInfoForm") BillingInfoForm billingForm,
             BindingResult result) throws CheckoutException, PricingException, ServiceException {
     	
+    	prepopulateCheckoutForms(CartState.getCart(), null, shippingForm, billingForm);
+    	
     	Order cart=CartState.getCart();
-    	System.out.println(cart.getPaymentInfos());
     	if (cart != null)
     	{
     		
@@ -154,10 +161,12 @@ public class CheckoutController extends BroadleafCheckoutController {
                 copyShippingAddressToBillingAddress(cart, billingForm);
             }
 	    	
-	    	//TODO:Sura Validar formulario con 	billingInfoFormValidator.validate(billingForm, result) 
-	    	//(ver metodo completeSecureCreditCardCheckout de superclase para ejemplo)
-	    	
-	    	//cart.setName("NombreOrden");
+	    	suraBillingInfoFormValidator.validate(billingForm, result);
+            if (result.hasErrors()) {
+                populateModelWithShippingReferenceData(request, model);
+                System.out.println("Error de validacion, a retornar checkout view");
+                return getCheckoutView();
+            }
 	    	
 	    	String uniqueReferenceNumber=String.valueOf(cart.getId());
 	    	
@@ -173,7 +182,17 @@ public class CheckoutController extends BroadleafCheckoutController {
 	    	payments.put(paymentInfoCajaSap, paymentInfoCajaSap.createEmptyReferenced());
 	    	
 	    	cart.getPaymentInfos().add(paymentInfoCajaSap);
-	    	CheckoutResponse checkoutResponse = checkoutService.performCheckout(cart,payments);
+	    	
+	    	
+	    	try {
+				CheckoutResponse checkoutResponse = checkoutService.performCheckout(cart,payments);
+			} catch (Exception e) {
+				if (e.getCause() instanceof RequiredAttributeNotProvidedException) {
+	                //responseMap.put("error", "allOptionsRequired");
+	            }
+			}
+	    	
+	    	
 	    	return getConfirmationView(cart.getOrderNumber());
     	}
 
