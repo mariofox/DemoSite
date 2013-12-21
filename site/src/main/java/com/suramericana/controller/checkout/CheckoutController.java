@@ -157,9 +157,6 @@ public class CheckoutController extends BroadleafCheckoutController {
     		
 	    	Map<PaymentInfo, Referenced> payments = new HashMap<PaymentInfo, Referenced>();
 	    	
-	    	//model.addAttribute("errorInventoryAtt", "Error de tales");
-	    	//model.addAttribute("errorMessage", "mensaje de error");
-	    	
 	    	orderService.removePaymentsFromOrder(cart, SuraCajaSapPaymentInfoType.CAJA_SAP);
 	    	
 	    	if (billingForm.isUseShippingAddress()){
