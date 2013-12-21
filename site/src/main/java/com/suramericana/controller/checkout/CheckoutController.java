@@ -36,6 +36,7 @@ import org.broadleafcommerce.core.web.checkout.model.ShippingInfoForm;
 import org.broadleafcommerce.core.web.checkout.validator.BillingInfoFormValidator;
 import org.broadleafcommerce.core.web.controller.checkout.BroadleafCheckoutController;
 import org.broadleafcommerce.core.web.order.CartState;
+import org.broadleafcommerce.inventory.basic.service.BasicInventoryUnavailableException;
 import org.broadleafcommerce.profile.core.domain.CustomerAddress;
 import org.broadleafcommerce.profile.web.core.CustomerState;
 import org.springframework.stereotype.Controller;
@@ -150,12 +151,16 @@ public class CheckoutController extends BroadleafCheckoutController {
             BindingResult result) throws CheckoutException, PricingException, ServiceException {
     	
     	prepopulateCheckoutForms(CartState.getCart(), null, shippingForm, billingForm);
-    	
     	Order cart=CartState.getCart();
     	if (cart != null)
     	{
     		
 	    	Map<PaymentInfo, Referenced> payments = new HashMap<PaymentInfo, Referenced>();
+	    	
+	    	//model.addAttribute("errorInventoryAtt", "Error de tales");
+	    	//model.addAttribute("errorMessage", "mensaje de error");
+	    	
+	    	orderService.removePaymentsFromOrder(cart, SuraCajaSapPaymentInfoType.CAJA_SAP);
 	    	
 	    	if (billingForm.isUseShippingAddress()){
                 copyShippingAddressToBillingAddress(cart, billingForm);
@@ -186,8 +191,11 @@ public class CheckoutController extends BroadleafCheckoutController {
 	    	try {
 				CheckoutResponse checkoutResponse = checkoutService.performCheckout(cart,payments);
 			} catch (Exception e) {
-				if (e.getCause() instanceof RequiredAttributeNotProvidedException) {
-	                //responseMap.put("error", "allOptionsRequired");
+				if (e.getCause() instanceof BasicInventoryUnavailableException) {
+					BasicInventoryUnavailableException inventoryException = (BasicInventoryUnavailableException) e.getCause();
+					model.addAttribute("errorInventorySkuId", inventoryException.getSkuId().toString());
+					model.addAttribute("errorInventoryAvail", inventoryException.getQuantityAvailable());
+					return "redirect:/checkout";
 	            }
 			}
 	    	

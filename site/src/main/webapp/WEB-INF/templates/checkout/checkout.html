@@ -30,6 +30,11 @@
                 <td align="left">
                     <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
                     <br/>
+                    <div th:if="${param.errorInventorySkuId}">
+                    	<span th:if="${param.errorInventorySkuId[0]} == *{product.defaultSku.Id}" class="error" style="color: red;"
+                    		  th:text="${'Error de Inventario: S&oacute;lo hay ' + param.errorInventoryAvail[0] + ' unidades disponibles de este producto.'}">Error de inventario
+                    	</span>
+                    </div>
                      <blc:product_option_display orderItem="${item}" >
                         <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
                             <li th:each="entry: ${productOptionDisplayValues}">
