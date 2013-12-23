@@ -3,8 +3,8 @@
         <tr>
             <th colspan="2"><span th:text="#{cart.item}">Item</span></th>
             <th><span th:text="#{cart.quantity}">Quantity</span></th>
+            <th><span th:text="#{cart.qtyAvailable}">Available</span></th>
             <th> <span th:text="#{cart.price}">Price</span> <span class="small" th:text="#{cart.each}">(each)</span></th>
-            <th> <span th:text="#{cart.totalSavings}">Total Savings</span></th>
             <th><span th:text="#{cart.total}">Total</span></th>
         </tr>
     </thead>
@@ -26,7 +26,7 @@
                 </ul>
                 <span style="display: none;color: red;font-size: 13px" th:class="${'errInvJS errorInventory'} + ${item.Sku.Id}">No inventario jqueryControl</span>
                 <span th:if="*{quantity} > ${item.Sku.QuantityAvailable}" 
-                	  th:class="${'errInvTH errorInventory'} + ${item.Sku.Id}"  
+                	  th:class="${'errInvTH errorInventory'} + ${item.Sku.Id} + ' errInvActive'"  
                 	  th:text="#{'cart.noInventoryBefQty'} + ${item.Sku.QuantityAvailable} + #{'cart.noInventoryAftQty'}" style="color: red;font-size: 13px" >No inventario thymeleafControl</span>
             </td>
             <td align="center">
@@ -39,9 +39,8 @@
                 </blc:form>
                 <a class="cartLinkBtn remove_from_cart" th:href="@{/cart/remove(orderItemId=*{id}, productId=*{product.id})}"><span th:text="#{cart.remove}">Remove</span></a>
             </td>
+            <td align="center" th:text="${item.Sku.QuantityAvailable}"></td>
             <td align="center" blc:price="*{getPriceBeforeAdjustments(true)}"></td>
-            
-            <td align="center" th:if="*{adjustmentValue.zero}">---</td>
             <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" >
             <span  blc:price="*{totalAdjustmentValue}" ></span>
                  <div class="productOptions" th:substituteby="catalog/partials/offers :: offers"/>

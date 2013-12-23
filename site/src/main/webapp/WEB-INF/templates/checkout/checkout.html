@@ -19,8 +19,8 @@
                 <th>&nbsp;</th>
                 <th align="left"><span th:text="#{cart.item}">Item</span></th>
                 <th><span th:text="#{cart.quantity}">Quantity</span></th>
+                <th><span th:text="#{cart.qtyAvailable}">Available</span></th>
                 <th> <span th:text="#{cart.price}">Price</span></th>
-                <th> <span th:text="#{cart.totalSavings}">Total Savings</span></th>
                 <th><span th:text="#{cart.total}">Total</span></th>
             </tr>
             </thead>
@@ -34,7 +34,7 @@
                     	<span th:if="${param.errorInventorySkuId[0]} == ${item.Sku.Id}" class="error" style="color: red;"
                     		  th:text="${'Error de Inventario: S&oacute;lo hay ' + param.errorInventoryAvail[0] + ' unidades disponibles de este producto.'}">Error de inventario
                     	</span>
-                    	<span style="display: inline; color: red; font-weight: normal;" class="error"><br/> Ingresa al <a class="fancycart refreshonclose" th:href="@{/cart}">carrito</a> para editar las cantidades</span>
+                    	<span th:if="${param.errorInventorySkuId[0]} == ${item.Sku.Id}" style="display: inline; color: red; font-weight: normal;" class="error"><br/> Ingresa al <a class="fancycart refreshonclose" th:href="@{/cart}">carrito</a> para editar las cantidades</span>
                     </div>
                      <blc:product_option_display orderItem="${item}" >
                         <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
@@ -48,9 +48,8 @@
                     </ul>
                 </td>
                 <td align="center" th:text="*{quantity}"></td>
+                <td align="center" th:text="${item.Sku.QuantityAvailable}"></td>
                 <td align="center" blc:price="*{price}"></td>
-                <td align="center" th:if="*{adjustmentValue.zero}">---</td>
-               
                 <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" >
                   <span  align="center"  blc:price="*{totalAdjustmentValue}" class="promotion" ></span>
                     <div class="productOptions" th:substituteby="catalog/partials/offers :: offers"/>

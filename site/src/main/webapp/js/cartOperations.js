@@ -164,6 +164,7 @@ $(function(){
     $('body').on('click', 'input.updateQuantity', function() {
         var $form = $(this).closest('form');
         $('.errorInventory' + $form.children('input[name="skuId"]').val() ).hide();
+        $('.errorInventory' + $form.children('input[name="skuId"]').val() ).removeClass('errInvActive');
         BLC.ajax({url: $form.attr('action'),
                 type: "POST", 
                 dataType: "json",
@@ -180,6 +181,7 @@ $(function(){
             	} else if ( data.error == 'BasicInventoryUnavailable' ) {
             		$('.errInvJS.errorInventory' + data.skuId).show();
             		$('.errInvJS.errorInventory' + data.skuId).html('Sólo hay ' + data.errorInventoryQuantityAvailable + ' unidades de este producto');
+            		$('.errorInventory' + data.skuId).addClass('errInvActive');
             		
             	}
                 
@@ -192,7 +194,7 @@ $(function(){
     
     // Verificar que no haya errores de inventario cuando elige Comprar (Checkout)
     $('body').on('click', 'a.checkoutButton', function() {
-        if( $('.errInvJS').css('display') != "none" || ( $('.errInvTH').css('display') != "none" && $('.errInvTH').css('display') != undefined ) ){
+    	if( $('.errInvActive').val() != undefined ) {
         	alert("Por favor verifique los productos sin inventario y modifique las cantidades");
         	return false;
         }
