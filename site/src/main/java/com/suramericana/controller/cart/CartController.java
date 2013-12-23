@@ -123,7 +123,7 @@ public class CartController extends BroadleafCartController {
             @ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, UpdateCartException, RemoveFromCartException {
     	Order cart = CartState.getCart();
     	Map<String, Object> responseMap = new HashMap<String, Object>();
-    	responseMap.put("productId", addToCartItem.getProductId() );
+    	responseMap.put("skuId", addToCartItem.getSkuId() );
         try {
 			super.updateQuantity(request, response, model, addToCartItem);
 		} catch (Exception e) {

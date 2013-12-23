@@ -163,7 +163,7 @@ $(function(){
     // This will trigger on any input with class "updateQuantity"
     $('body').on('click', 'input.updateQuantity', function() {
         var $form = $(this).closest('form');
-        $('.errorInventory' + $form.children('input[name="productId"]').val() ).hide();
+        $('.errorInventory' + $form.children('input[name="skuId"]').val() ).hide();
         BLC.ajax({url: $form.attr('action'),
                 type: "POST", 
                 dataType: "json",
@@ -174,12 +174,12 @@ $(function(){
             		if (extraData) {
                         updateHeaderCartItemsCount(extraData.cartItemCount);
                         if ($form.children('input.quantityInput').val() == 0) {
-                            showAddToCartButton(extraData.productId, 'cart');
+                            showAddToCartButton(extraData.skuId, 'cart');
                         }
                     }
             	} else if ( data.error == 'BasicInventoryUnavailable' ) {
-            		$('.errorInventory' + data.productId).show();
-            		$('.errorInventory' + data.productId).html('Sólo hay ' + data.errorInventoryQuantityAvailable + ' unidades de este producto');
+            		$('.errInvJS.errorInventory' + data.skuId).show();
+            		$('.errInvJS.errorInventory' + data.skuId).html('Sólo hay ' + data.errorInventoryQuantityAvailable + ' unidades de este producto');
             		
             	}
                 
@@ -188,6 +188,14 @@ $(function(){
             }
         );
         return false;
+    });
+    
+    // Verificar que no haya errores de inventario cuando elige Comprar (Checkout)
+    $('body').on('click', 'a.checkoutButton', function() {
+        if( $('.errInvJS').css('display') != "none" || ( $('.errInvTH').css('display') != "none" && $('.errInvTH').css('display') != undefined ) ){
+        	alert("Por favor verifique los productos sin inventario y modifique las cantidades");
+        	return false;
+        }
     });
     
     // Intercept remove from cart operations and perform them via AJAX instead

@@ -24,12 +24,16 @@
                 <ul th:if="${item instanceof T(org.broadleafcommerce.core.order.domain.BundleOrderItem)}">
                     <li th:each="doi : *{discreteOrderItems}" th:text="${doi.quantity + ' x ' + doi.name}" />
                 </ul>
-                <span style="display: none;color: red;font-size: 13px" th:class="${'errorSpan errorInventory'} + *{product.id}">No inventario</span>
+                <span style="display: none;color: red;font-size: 13px" th:class="${'errInvJS errorInventory'} + ${item.Sku.Id}">No inventario jqueryControl</span>
+                <span th:if="*{quantity} > ${item.Sku.QuantityAvailable}" 
+                	  th:class="${'errInvTH errorInventory'} + ${item.Sku.Id}"  
+                	  th:text="#{'cart.noInventoryBefQty'} + ${item.Sku.QuantityAvailable} + #{'cart.noInventoryAftQty'}" style="color: red;font-size: 13px" >No inventario thymeleafControl</span>
             </td>
             <td align="center">
                 <blc:form method="POST" th:action="@{/cart/updateQuantity}">
                     <input type="hidden" name="productId" th:value="*{product.id}" />
                     <input type="hidden" name="orderItemId" th:value="*{id}" />
+                    <input type="hidden" name="skuId" th:value="${item.Sku.Id}" />
                     <input type="number" name="quantity" class="quantityInput" style="width:30px" th:value="*{quantity}" maxlength="3" autocomplete="off"/><br />
                     <input type="submit" class="updateQuantity" th:value="#{cart.update}"/>
                 </blc:form>
