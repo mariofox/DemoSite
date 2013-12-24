@@ -7,7 +7,7 @@
     <div style="margin: 20px 10px;" th:unless="${#lists.isEmpty(customerAddresses)}">
         Opciones:
         <select onchange="location.href=this.options[selectedIndex].value">
-            <option>Elige una dirección para actualizar...</option>
+            <option>Elige una direcci&oacute;n para actualizar...</option>
             <option th:each="customerAddress : ${customerAddresses}" th:object="${customerAddress}" th:value="@{'/account/addresses/' + *{id}}">
                 <span th:text="*{!#strings.isEmpty(addressName) ? addressName + ' (' + address.addressLine1 + ')' : address.addressLine1}"></span>
             </option>
@@ -33,7 +33,8 @@
             <div class="form30 margin20">
                 <label for="phone">Tel&eacute;fono</label>
                 <span class="error_spacer" th:if="${#fields.hasErrors('address.firstName') or #fields.hasErrors('address.lastName')}">error</span>
-                <input type="tel" id="address.phonePrimary" name="address.phonePrimary" th:value="*{address.phonePrimary.phoneNumber}" class="field30 cloneable" />
+                <input type="tel" id="address.phonePrimary" name="address.phonePrimary" th:if="*{address.phonePrimary!=null}" th:value="*{address.phonePrimary.phoneNumber}" class="field30 cloneable" />
+                <input type="tel" id="address.phonePrimary" name="address.phonePrimary" th:if="*{address.phonePrimary==null}" class="field30 clearable" />
             </div>
             <div class="form50">
                 <label for="address1">Direcci&oacute;n</label>
@@ -45,17 +46,23 @@
                 <span class="error_spacer" th:if="${#fields.hasErrors('address.addressLine1')}">error</span>
                 <input type="text" th:field="*{address.addressLine2}" class="field50 cloneable" />
             </div>
-            <div class="form30">
+            <div style="width: 280px;" class="form30">
                 <label for="city">Ciudad / Departamento</label>
                 <span class="error" th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"></span>
                 <br th:if="${#fields.hasErrors('address.city')} and ${#fields.hasErrors('address.state')}"/>
                 <span class="error" th:if="${#fields.hasErrors('address.state')}" th:errors="*{address.state}"></span>
                 <input type="text" th:field="*{address.city}" class="field25 required cloneable" th:classappend="${#fields.hasErrors('address.city')}? 'fieldError'" />
-                <select id="state" th:field="*{address.state}" size="1" style="width: 48px;" class="required cloneable" th:classappend="${#fields.hasErrors('address.state')}? 'fieldError'">
+                <select id="state" th:field="*{address.state}" size="1" style="width: 100px;" class="required cloneable" th:classappend="${#fields.hasErrors('address.state')}? 'fieldError'">
                     <option value="">--</option>
                     <option th:each="state : ${states}" th:value="${state.abbreviation}" th:text="${state.abbreviation}"></option>
                 </select>
             </div>
+            <!-- <div  class="form25 margin20">
+            	<label for="postal_code">Postal Code</label>
+                <span class="error" th:if="${#fields.hasErrors('address.postalCode')}" th:errors="*{address.postalCode}"></span>
+                <input type="text" th:field="*{address.postalCode}" class="field25 cloneable" th:classappend="${#fields.hasErrors('address.postalCode')}? 'fieldError'" />
+            </div> -->
+            <input type="hidden" name="address.postalCode" value="0000" />
             <div class="form25 margin20">
                 <label>&nbsp;</label>
                 <input type="checkbox" th:field="*{address.default}" class="field25" style="width:22px;" /> Predeterminada
@@ -68,8 +75,8 @@
             <div class="clearfix"></div>
         </div>
         <div>
-            <input type="submit" th:value="*{customerAddressId != null ? 'Update Address' : 'Create New Address'}" class="medium red" />
-            <input th:if="*{customerAddressId}" type="submit" name="removeAddress" value="Remove" class="small dark" />
+            <input type="submit" th:value="*{customerAddressId != null ? 'Actualizar Direcci&oacute;n' : 'Crear Nueva Direcci&oacute;n'}" class="medium red" />
+            <input th:if="*{customerAddressId}" type="submit" name="removeAddress" value="Borrar" class="small dark" />
             <span class="error" th:if="${errorMessage}" th:text="${errorMessage}"></span>
         </div>
     </blc:form>
