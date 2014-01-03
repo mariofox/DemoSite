@@ -57,8 +57,8 @@ $(function(){
     
     // Actualiza valor total del producto y valor total de la orden en el fancybox de orden
     function updatePricesProductOrder(orderItemId, productTotalPrice, orderTotalPrice) {
-    	$('#totalValue' + orderItemId).html('$ ' + productTotalPrice);
-    	$('#subtotal').html('$ ' + orderTotalPrice);
+    	$('#totalValue' + orderItemId).html(productTotalPrice);
+    	$('#subtotal').html(orderTotalPrice);
     }
 
     // Show the cart in a modal when any link with the class "fancycart" is clicked

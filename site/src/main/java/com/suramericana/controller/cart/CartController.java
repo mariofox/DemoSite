@@ -40,6 +40,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -124,6 +125,10 @@ public class CartController extends BroadleafCartController {
     	Order cart = CartState.getCart();
     	Map<String, Object> responseMap = new HashMap<String, Object>();
     	responseMap.put("skuId", addToCartItem.getSkuId() );
+    	
+    	NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(0);
+    	
         try {
 			super.updateQuantity(request, response, model, addToCartItem);
 		} catch (Exception e) {
@@ -141,12 +146,12 @@ public class CartController extends BroadleafCartController {
         	//Buscar item en la orden equivalente al item actual y agregar precio a la respuesta
         	for (DiscreteOrderItem actualItemDiscrete : listOrderItems){
         		if ( actualItemDiscrete.getProduct().getId().equals( addToCartItem.getProductId() )  ) {
-        			responseMap.put("productTotalPrice", actualItemDiscrete.getTotalPrice().getAmount() );
+        			responseMap.put("productTotalPrice", "$ " + nf.format( actualItemDiscrete.getTotalPrice().getAmount() ) );
         			responseMap.put("orderItemId", actualItemDiscrete.getId() );
         			break;
         		}
         	}
-			responseMap.put("orderTotalPrice", cart.getTotal().getAmount() );
+			responseMap.put("orderTotalPrice", "$ " + nf.format( cart.getTotal().getAmount() ) );
         }
         return responseMap;
     }
