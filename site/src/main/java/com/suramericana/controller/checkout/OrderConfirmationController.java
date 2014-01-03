@@ -52,7 +52,11 @@ public class OrderConfirmationController extends BroadleafOrderConfirmationContr
     @RequestMapping(value = "/confirmation/{orderNumber}", method = RequestMethod.GET)
     public String displayOrderConfirmationByOrderNumber(@PathVariable("orderNumber") String orderNumber, Model model,
             HttpServletRequest request, HttpServletResponse response) {
-        sendConfirmationEmail(orderNumber);
+        try {
+			sendConfirmationEmail(orderNumber);
+		} catch (Exception e) {
+			model.addAttribute("mailError", true);
+		}
         return super.displayOrderConfirmationByOrderNumber(orderNumber, model, request, response);
     }
     
