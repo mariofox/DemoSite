@@ -156,7 +156,7 @@
                             </blc:form>
                             <br/>
                             <div class="total-reviews">
-                                (<span th:text="*{numberOfReviews}"></span><span th:if="*{numberOfReviews} == 1"> review</span><span th:if="*{numberOfReviews} > 1"> reviews</span>)
+                                (<span th:text="*{numberOfReviews}"></span><span th:if="*{numberOfReviews} == 1"> calificaci&oacute;n</span><span th:if="*{numberOfReviews} > 1"> calificaciones</span>)
                             </div>
                         </div>
                         <div class="clearfix"></div>
@@ -164,8 +164,8 @@
                             <div th:if="${currentCustomerReview}" th:object="${currentCustomerReview}" class="customer-reviews current-customer-review">
                                 <h4>Tu Comentario</h4>
                                 <p class="voting-summary" th:if="*{notHelpfulCount()} + *{helpfulCount()} > 0">
-                                    <span th:text="*{helpfulCount()}">9</span> of 
-                                    <span th:text="*{notHelpfulCount()} + *{helpfulCount()}">10</span> found the following review helpful
+                                    <span th:text="*{helpfulCount()}">9</span> de 
+                                    <span th:text="*{notHelpfulCount()} + *{helpfulCount()}">10</span> encontaron valiosa la sigiuente calificaci&oacute;n
                                 </p>
                                 <blc:form class="customer-rating" th:attr="data-customer-rating=*{ratingDetail.rating}">
                                     <input type="radio" class="star" />
@@ -175,7 +175,7 @@
                                     <input type="radio" class="star" />
                                 </blc:form>
                                 <span class="reviewer-info">
-                                    on <span th:text="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
+                                    en <span th:text="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
                                 </span>
                                 <div class="clearfix"></div>
                                 <blockquote th:if="!*{#strings.isEmpty(reviewText)}" th:text="'&quot;' + *{reviewText} + '&quot;'">Comentario</blockquote>                         
@@ -186,7 +186,7 @@
                                 <li th:each="review, iterStat : *{reviews}" th:object="${review}" th:if="${iterStat.count} lt 4">
                                     <p class="voting-summary" th:if="*{notHelpfulCount()} + *{helpfulCount()} > 0">
                                         <span th:text="*{helpfulCount()}">9</span> of 
-                                        <span th:text="*{notHelpfulCount()} + *{helpfulCount()}">10</span> found the following review helpful
+                                        <span th:text="*{notHelpfulCount()} + *{helpfulCount()}">10</span> encontaron valiosa la sigiuente calificaci&oacute;n
                                     </p>
                                     <blc:form class="customer-rating" th:attr="data-customer-rating=*{ratingDetail.rating}">
                                         <input type="radio" class="star" />
@@ -196,7 +196,7 @@
                                         <input type="radio" class="star" />
                                     </blc:form>
                                     <span class="reviewer-info">
-                                        Por <span class="penname" th:text="${review.customer.firstName}">John</span> on  
+                                        Por <span class="penname" th:text="${review.customer.firstName}">John</span> en  
                                         <span th:text="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
                                     </span>
                                     <div class="clearfix"></div>

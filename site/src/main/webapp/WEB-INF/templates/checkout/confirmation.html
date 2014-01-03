@@ -4,7 +4,8 @@
     <div id="order_confirmation">
         <h2><span th:text="#{confirmation.success}">Success!</span></h2>
         <h3><span th:text="#{confirmation.orderNum}">Order Confirmation #</span> - <span th:text="${order.orderNumber}"/></h3>
-        <p class="confirmation-note"><span th:text="#{confirmation.confirmEmail.toBeSent}">A confirmation email will be sent to</span> <span th:text="${order.emailAddress}"></span>.</p>
+        <p th:if="*{!mailError}" class="confirmation-note"><span th:text="#{confirmation.confirmEmail.toBeSent}">A confirmation email will be sent to</span> <span th:text="${order.emailAddress}"></span>.</p>
+        <p th:if="*{mailError}" style="color: red;" class="confirmation-note"><span th:text="#{confirmation.confirmEmailError.toBeSent}">An error ocurred sending email to</span> <span th:text="${order.emailAddress}"></span>.</p>
     </div>
 
     <div id="cart">
