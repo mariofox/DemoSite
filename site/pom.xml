@@ -31,7 +31,7 @@
                 	<archive>
 			           <manifest>
 			             <addClasspath>true</addClasspath>
-			             <classpathPrefix>/</classpathPrefix>
+			             <classpathPrefix>lib/</classpathPrefix>
 			           </manifest>
 			         </archive>
                     <webappDirectory>${webappDirectory}</webappDirectory>
