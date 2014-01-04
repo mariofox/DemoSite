@@ -15,6 +15,23 @@
     </properties>
     <build>
         <plugins>
+        
+        
+        	<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                	<packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
+                	<archive>
+			           <manifest>
+			             <addClasspath>true</addClasspath>
+			             <classpathPrefix>/</classpathPrefix>
+			           </manifest>
+			         </archive>
+                </configuration>
+            </plugin>
+            
+            
             <plugin>
                 <groupId>org.zeroturnaround</groupId>
                 <artifactId>jrebel-maven-plugin</artifactId>
@@ -29,6 +46,12 @@
                 </executions>
                 <configuration>
                     <rootPath>${basedir}</rootPath>
+                    <archive>
+			           <manifest>
+			             <addClasspath>true</addClasspath>
+			             <classpathPrefix>/</classpathPrefix>
+			           </manifest>
+			         </archive>
                 </configuration>
             </plugin>
         </plugins>

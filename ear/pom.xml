@@ -93,7 +93,7 @@
 				<artifactId>maven-ear-plugin</artifactId>
 				<version>2.9</version>
 				<configuration>
-					<defaultLibBundleDir>lib/</defaultLibBundleDir>
+					<defaultLibBundleDir>/</defaultLibBundleDir>
 					<modules>
 						<webModule>
 							<groupId>com.suramericana</groupId>
