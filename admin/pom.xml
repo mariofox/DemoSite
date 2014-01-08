@@ -28,10 +28,10 @@
                 <configuration>
 	                <packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
 	                	<archive>
-				           <manifest>
-				             <addClasspath>true</addClasspath>
-				             <classpathPrefix>APP-INF/lib/</classpathPrefix>
-				           </manifest>
+<!-- 				           <manifest> -->
+<!-- 				             <addClasspath>true</addClasspath> -->
+<!-- 				             <classpathPrefix>APP-INF/lib/</classpathPrefix> -->
+<!-- 				           </manifest> -->
 				         </archive>
                     <webappDirectory>${webappDirectory}</webappDirectory>
                 </configuration>
