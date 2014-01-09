@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wls:weblogic-application xmlns:wls="http://xmlns.oracle.com/weblogic/weblogic-application" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/javaee_5.xsd http://xmlns.oracle.com/weblogic/weblogic-application http://xmlns.oracle.com/weblogic/weblogic-application/1.4/weblogic-application.xsd">
+    <wls:prefer-application-packages>
+        <wls:package-name>org.apache.*</wls:package-name>
+		<wls:package-name>org.jbpm.*</wls:package-name>			
+		<wls:package-name>javax.faces.*</wls:package-name>
+		<wls:package-name>org.hibernate.*</wls:package-name>
+		<wls:package-name>net.sf.*</wls:package-name>
+		<wls:package-name>org.displaytag.*</wls:package-name>
+		<wls:package-name>org.ajax4jsf.*</wls:package-name>
+		<wls:package-name>com.sun.*</wls:package-name>
+		<wls:package-name>org.jboss.*</wls:package-name>
+		<wls:package-name>org.codehaus.*</wls:package-name>
+		<wls:package-name>org.richfaces.*</wls:package-name>			
+		<wls:package-name>antlr.*</wls:package-name>
+		<wls:package-name>org.slf4j.*</wls:package-name>
+		<wls:package-name>org.bouncycastle.*</wls:package-name>
+		<wls:package-name>org.objectweb.*</wls:package-name>
+		<wls:package-name>org.joda.*</wls:package-name>
+		<wls:package-name>org.springframework.*</wls:package-name>
+    </wls:prefer-application-packages>
+</wls:weblogic-application>

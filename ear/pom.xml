@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>ear</artifactId>
 	<packaging>ear</packaging>
-	<name/>
+	<name>ear</name>
 	<parent>
 		<groupId>com.suramericana</groupId>
 		<artifactId>ecommerce-website</artifactId>
@@ -74,6 +74,11 @@
 			<artifactId>spring-instrument</artifactId>
 			<version>3.2.5.RELEASE</version>
 		</dependency>
+	    <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>3.2.5.RELEASE</version>
+	    </dependency>
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
@@ -93,7 +98,7 @@
 				<artifactId>maven-ear-plugin</artifactId>
 				<version>2.9</version>
 				<configuration>
-					<defaultLibBundleDir>lib/</defaultLibBundleDir>
+					<defaultLibBundleDir>APP-INF/lib/</defaultLibBundleDir>
 					<modules>
 						<webModule>
 							<groupId>com.suramericana</groupId>
