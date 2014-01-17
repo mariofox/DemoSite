@@ -98,6 +98,7 @@
 				<artifactId>maven-ear-plugin</artifactId>
 				<version>2.9</version>
 				<configuration>
+				    <packagingIncludes>**/*.xml,**/broadleaf*.jar,**/core**.jar,**/*.war</packagingIncludes>
 					<defaultLibBundleDir>APP-INF/lib/</defaultLibBundleDir>
 					<modules>
 						<webModule>
